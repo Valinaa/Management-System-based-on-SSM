@@ -13,7 +13,7 @@ import org.springframework.web.filter.FormContentFilter;
 @Configuration
 public class WebConfiguration {
     @Bean
-    public FilterRegistrationBean<FormContentFilter> formContentFilter() {
+    public FilterRegistrationBean<FormContentFilter> testFormContentFilter() {
         FilterRegistrationBean<FormContentFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new FormContentFilter());
         /*

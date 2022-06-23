@@ -44,6 +44,9 @@
         footer span{
             font-weight: bold;
         }
+
+
+
     </style>
     <title>欢迎参加在线考试！</title>
 </head>
@@ -56,7 +59,9 @@
 <div th:replace="allTeacher :: updatePassword"></div>
 <!--考试前言-->
 <div class="container p-5 my-5 border bg-secondary text-white" style="width: 900px;">
-    <div class="text-center"><h1 style="font-family: '楷体'">欢迎您使用在线考试系统！</h1><small>接下来请阅读一下<mark>考前须知</mark>哦~</small></div>
+    <div class="text-center"><h1 style="font-family: '楷体'">欢迎您使用在线考试系统！</h1><small>接下来请阅读一下
+        <mark>考前须知</mark>
+        哦~</small></div>
     <h3 style="color: lightsteelblue;font-weight: bold">考前须知</h3>
     <p>如果你是第一次使用它进行考试，请仔细阅读下面的信息哦~</p>
     <dl>
@@ -80,25 +85,31 @@
     </div>
     <h2 class="text-center" style="margin-bottom: 30px">考试名称：<span th:text="${EName}"></span></h2>
     <div class="row text-center" style="margin-bottom: 30px">
-        <div class="col-md-12"><h4 style="color: green;">考试开始时间：<span style="font-style: italic;font-weight: bold" th:text="${Time}">时间</span></h4></div>
+        <div class="col-md-12"><h4 style="color: green;">考试开始时间：<span style="font-style: italic;font-weight: bold"
+                                                                      th:text="${Time}">时间</span></h4></div>
     </div>
     <div class="row text-center" style="margin-bottom: 30px">
         <div class="col-md-4"><h4>考试专业：<span th:text="${subj}">专业</span></h4></div>
-        <div class="col-md-4"><h4 style="color: powderblue">考试时间：<span id="tim" th:text="${Durations}">0.5</span>分钟</h4></div>
+        <div class="col-md-4"><h4 style="color: powderblue">考试时间：<span id="tim" th:text="${Durations}">0.5</span>分钟</h4>
+        </div>
         <div class="col-md-4"><h4 style="color: red">总分：<span id="markTotal">总分数</span>分</h4></div>
     </div>
     <ol style="display: none">
         <li style="margin-bottom: 30px" th:each="Question : ${allQ}">
-        <h5>(<span style="color: blue" th:text="${Question.QSub}">科目</span> <span class="sinMark" style="color: mediumvioletred" th:text="${Question.marks}">20</span>分) 
-            <span th:utext="${Question.question}"></span></h5>
-        <input type="hidden" name="Qnum" th:value="${Question.qid}">
+            <h5>(<span style="color: blue" th:text="${Question.QSub}">科目</span> <span class="sinMark"
+                                                                                      style="color: mediumvioletred"
+                                                                                      th:text="${Question.marks}">20</span>分)
+                <span th:utext="${Question.question}"></span></h5>
+            <input name="Qnum" th:value="${Question.qid}" type="hidden">
         </li>
     </ol>
     <form id="Oinfo" style="display: none" action="checkAnswer" method="post">
         <input type="hidden" name="ExamID" th:value="${EID}">
         <input type="hidden" name="NUM">
     </form>
-    <div id="mitbtn" style="display: none"><button id="sTest" type="button" class="btn btn-lg btn-danger">交卷</button></div>
+    <div id="mitbtn" style="display: none">
+        <button class="btn btn-lg btn-danger" id="sTest" type="button">交卷</button>
+    </div>
 </div>
 <footer class="sticky-bottom">
     <span>CopyRight</span><br>
@@ -235,12 +246,20 @@ $(document).ready(function(){
         var ad=$("#AdminIn").text();
         $(".PassAdmin").text(ad);
     });
-    $("#addPass").change(function(){
-        var ad=$("#AdminIn").text();
-        var pa=$("#addPass").val();
-        $("#exampleModal4").find("[href]").attr("href","updatePass/"+ad+"/"+pa);
-        console.log($("#exampleModal4").find("[href]").attr("href"));
+    $("#passUpdate").click(function(){
+        console.log("password/"+$("#AdminIn").text()+"/"+$("#addPass").val());
+        $.ajax({
+            url : "password/"+$("#AdminIn").text()+"/"+$("#addPass").val(),
+            type : "PUT",
+            success : function(result) {
+                alert(result);
+                location.reload();
+            }
+        })
     });
 });
+
+
+
 </script>
 </html>

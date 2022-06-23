@@ -40,16 +40,22 @@
 		footer span{
 			font-weight: bold;
 		}
-	</style>
+
+
+
+
+
+
+    </style>
     <title>主界面</title>
 </head>
 <body>
 <!--导航栏引入-->
 <div th:replace="allTeacher :: navbarmod"></div>
 <div class="jumbotron">
-	<div class="container" style="margin-top: 20px;width: 900px;">
-    	<p class="h2 text-center">欢迎使用大学生成绩管理系统！</p>
-	</div>
+    <div class="container" style="margin-top: 20px;width: 900px;">
+        <p class="h2 text-center">欢迎使用大学生成绩管理系统！</p>
+    </div>
 </div>
 <!--侧边栏引入-->
 <div th:replace="allTeacher :: offcanvas"></div>
@@ -57,30 +63,32 @@
 <div th:replace="allTeacher :: updatePassword"></div>
 <!--添加考试时生成学生专用考试卡片-->
 <div class="container">
-	<div class="row">
-	<div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px" th:each="Exam,it : ${test}" th:if="${it.index} lt 3">
-  		<div class="card-body text-center">
-    		<h5 class="card-title" style="font-weight: bold;color: skyblue;" th:text="${Exam.eName}">考试名称</h5>
-    		<h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
-    			<span th:text="${Exam.time}"></span></h6>
-    		<p class="card-text" style="color:red;">你有一个考试需要参加！</p>
-			<small style="display: none" th:text="${Exam.eid}">1</small>
-    		<a href="#" class="card-link btn btn-outline-warning">点击参加考试</a>
-  		</div>
-	</div>
-	</div>
-	<div class="row">
-	<div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px" th:each="Exam,it : ${test}" th:if="${it.index} gt 2 and ${it.index} lt 6">
-  		<div class="card-body text-center">
-    		<h5 class="card-title" style="font-weight: bold;color: skyblue" th:text="${Exam.eName}">考试名称</h5>
-    		<h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
-    			<span th:text="${Exam.time}"></span></h6>
-    		<p class="card-text" style="color:red;">你有一个考试需要参加！</p>
-    		<small style="display: none" th:text="${Exam.eid}">2</small>
-    		<a href="#" class="card-link btn btn-outline-warning">点击参加考试</a>
-  		</div>
-	</div>
-	</div>
+    <div class="row">
+        <div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px"
+             th:each="Exam,it : ${test}" th:if="${it.index} lt 3">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight: bold;color: skyblue;" th:text="${Exam.eName}">考试名称</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
+                    <span th:text="${Exam.time}"></span></h6>
+                <p class="card-text" style="color:red;">你有一个考试需要参加！</p>
+                <small style="display: none" th:text="${Exam.eid}">1</small>
+                <a class="card-link btn btn-outline-warning" href="#">点击参加考试</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px"
+             th:each="Exam,it : ${test}" th:if="${it.index} gt 2 and ${it.index} lt 6">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight: bold;color: skyblue" th:text="${Exam.eName}">考试名称</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
+                    <span th:text="${Exam.time}"></span></h6>
+                <p class="card-text" style="color:red;">你有一个考试需要参加！</p>
+                <small style="display: none" th:text="${Exam.eid}">2</small>
+                <a class="card-link btn btn-outline-warning" href="#">点击参加考试</a>
+            </div>
+        </div>
+    </div>
 </div>
 <!--添加专业考试功能引入-->
 <div th:replace="allTeacher :: addExamfr"></div>
@@ -146,11 +154,16 @@ $(document).ready(function(){
         var ad=$("#AdminIn").text();
         $(".PassAdmin").text(ad);
     });
-    $("#addPass").change(function(){
-        var ad=$("#AdminIn").text();
-        var pa=$("#addPass").val();
-        $("#exampleModal4").find("[href]").attr("href","updatePass/"+ad+"/"+pa);
-        console.log($("#exampleModal4").find("[href]").attr("href"));
+    $("#passUpdate").click(function(){
+        console.log("password/"+$("#AdminIn").text()+"/"+$("#addPass").val());
+        $.ajax({
+            url : "password/"+$("#AdminIn").text()+"/"+$("#addPass").val(),
+            type : "PUT",
+            success : function(result) {
+                alert(result);
+                location.reload();
+            }
+        })
     });
     /*
     添加考试的信息(专业)补全
@@ -195,5 +208,10 @@ $(document).ready(function(){
         $("#AEform").submit();
     });
 });
+
+
+
+
+
 </script>
 </html>

@@ -50,11 +50,16 @@ $(document).ready(function() {
         var ad=$("#AdminIn").text();
         $(".PassAdmin").text(ad);
     });
-    $("#addPass").change(function(){
-        var ad=$("#AdminIn").text();
-        var pa=$("#addPass").val();
-        $("#exampleModal4").find("[href]").attr("href","updatePass/"+ad+"/"+pa);
-        console.log($("#exampleModal4").find("[href]").attr("href"));
+    $("#passUpdate").click(function(){
+        console.log("password/"+$("#AdminIn").text()+"/"+$("#addPass").val());
+        $.ajax({
+            url : "password/"+$("#AdminIn").text()+"/"+$("#addPass").val(),
+            type : "PUT",
+            success : function(result) {
+                alert(result);
+                location.reload();
+            }
+        })
     });
     /*
     引入Questions表
