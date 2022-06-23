@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="/static/timeTo.css" th:href="@{/timeTo.css}">
+    <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
+    <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+    <script src="/static/jquery.time-to.min.js" th:src="@{/jquery.time-to.min.js}"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <style type="text/css">
+        #timeToo{
+            position: fixed;
+            right: 40px;
+            bottom: 75%;
+            top: 150px;
+            left: 90%;
+        }
+        #mitbtn{
+            position: fixed;
+            right: 40px;
+            bottom: 75%;
+            top: 143px;
+            left: 8%;
+        }
+        dt{
+            color: lightyellow;
+        }
+        ol{
+            list-style-type: decimal-leading-zero;
+            list-style-position: outside;
+        }
+        ol li::marker{
+            color: indianred;
+            font-size: 25px;
+        }
+        footer{
+            text-align: center;
+            font-family: sans-serif;
+            right: 0px;
+            left: 0px;
+            color: palegreen;
+        }
+        footer span{
+            font-weight: bold;
+        }
+    </style>
+    <title>欢迎参加在线考试！</title>
+</head>
+<body>
+<!--导航栏引入-->
+<div th:replace="allTeacher :: navbarmod"></div>
+<!--侧边栏引入-->
+<div th:replace="allTeacher :: offcanvas"></div>
+<!--密码修改功能引入-->
+<div th:replace="allTeacher :: updatePassword"></div>
+<!--考试前言-->
+<div class="container p-5 my-5 border bg-secondary text-white" style="width: 900px;">
+    <div class="text-center"><h1 style="font-family: '楷体'">欢迎您使用在线考试系统！</h1><small>接下来请阅读一下<mark>考前须知</mark>哦~</small></div>
+    <h3 style="color: lightsteelblue;font-weight: bold">考前须知</h3>
+    <p>如果你是第一次使用它进行考试，请仔细阅读下面的信息哦~</p>
+    <dl>
+        <dt>页面跳转</dt>
+        <dd>由于系统不够完善，你可以在考试开始期间对其它页面进行访问，但我们不建议你这样做</dd>
+        <dt>关于时间</dt>
+        <dd>我们会提供考试的总时间以及精确至秒的剩余时间</dd>
+        <dt>关于答题</dt>
+        <dd>请尽可能的保证答题完整度，100%总是优于99%，不是吗？</dd>
+        <dt>关于交卷</dt>
+        <dd>我们允许不限制时间的提前交卷，请向我们展现你的优秀吧！</dd>
+        <dt>...</dt>
+    </dl>
+</div>
+<!--考试倒计时-->
+<div id="timeToo"></div>
+<!--考试页面-->
+<div class="container p-5 my-5">
+    <div class="row text-center" style="margin-bottom: 30px">
+        <button type="button" id="Sta" class="btn btn-outline-info" style="font-weight: bold;">提前开始考试</button>
+    </div>
+    <h2 class="text-center" style="margin-bottom: 30px">考试名称：<span th:text="${EName}"></span></h2>
+    <div class="row text-center" style="margin-bottom: 30px">
+        <div class="col-md-12"><h4 style="color: green;">考试开始时间：<span style="font-style: italic;font-weight: bold" th:text="${Time}">时间</span></h4></div>
+    </div>
+    <div class="row text-center" style="margin-bottom: 30px">
+        <div class="col-md-4"><h4>考试专业：<span th:text="${subj}">专业</span></h4></div>
+        <div class="col-md-4"><h4 style="color: powderblue">考试时间：<span id="tim" th:text="${Durations}">0.5</span>分钟</h4></div>
+        <div class="col-md-4"><h4 style="color: red">总分：<span id="markTotal">总分数</span>分</h4></div>
+    </div>
+    <ol style="display: none">
+        <li style="margin-bottom: 30px" th:each="Question : ${allQ}">
+        <h5>(<span style="color: blue" th:text="${Question.QSub}">科目</span> <span class="sinMark" style="color: mediumvioletred" th:text="${Question.marks}">20</span>分) 
+            <span th:utext="${Question.question}"></span></h5>
+        <input type="hidden" name="Qnum" th:value="${Question.qid}">
+        </li>
+    </ol>
+    <form id="Oinfo" style="display: none" action="checkAnswer" method="post">
+        <input type="hidden" name="ExamID" th:value="${EID}">
+        <input type="hidden" name="NUM">
+    </form>
+    <div id="mitbtn" style="display: none"><button id="sTest" type="button" class="btn btn-lg btn-danger">交卷</button></div>
+</div>
+<footer class="sticky-bottom">
+    <span>CopyRight</span><br>
+    <span>Team：</span>重案七组<br>
+    <span>Course：</span>Managerment Information Systems<br>
+    <span>E-mail：</span>www.EcustCK@163.com
+</footer>
+</body>
+<script>
+$(document).ready(function(){
+    /*
+    计算考试总分数
+    */
+    var marks=0;
+    $(".sinMark").each(function(){
+        marks=marks+Number($(this).text());
+    });
+    $("#markTotal").text(marks);
+    /*
+    点击提前开始考试后
+    显示考试页面及考试倒计时
+    */
+    $("#Sta").click(function(){
+        $("ol,#mitbtn").show();
+        $("#Sta").attr("disabled",true);
+        var time=60*Number($("#tim").text());
+        $("#timeToo").timeTo({
+            seconds: time,
+            theme: "black",
+            displayHours: false,
+            callback: function(){
+                $("#sTest").click();
+            }
+        });
+    });
+    /*
+    点击提交按钮后整理表单
+    根据不同题型采用不同方式收集数据
+    JSON数组封装
+    */
+    $("#sTest").click(function(){
+        $("input[name='NUM']").val($("#STUNUM").text());
+        var waitck=[];
+        $("ol li").each(function(){
+            var obj=$(this).find("input[type='radio']");
+            var info={};
+            var str="";
+            info["qid"]=$(this).find("[name='Qnum']").val();
+            $(this).find("input:checked").each(function(){
+                var v=$(this).val();
+                str += v;
+                console.log(v);
+            });
+            if($.trim(str)!=""){
+                info["myans"]=str;
+            }else{
+                info["myans"]=$(":text").last().val();
+                console.log($(":text").last().val());
+            }
+            info["marks"]=$(this).find(".sinMark").text();
+            waitck.push(info);
+        });
+        console.log(waitck);
+        var jsonfy=JSON.stringify(waitck);
+        alert("已交卷！");
+        /*
+        采用ajax提交表单
+        表单数据用JSON封装
+        后端用实体类接受
+        其他参数用URL传入
+        */
+        $.ajax({
+            url: "checkAnswer?NUM="+$("input[name='NUM']").val()+"&ExamID="+$("input[name='ExamID']").val(),
+            type: "post",
+            data: jsonfy,
+            contentType:"application/json;charset=utf-8",
+            dataType:"json",
+            success:function(){
+                console.log(waitck);
+            },
+            complete:function(xhr){
+                 // 通过xhr取得响应头
+                const REDIRECT = xhr.getResponseHeader("REDIRECT");
+                //如果响应头中包含 REDIRECT 则说明是我们需要进行重定向的
+                if (REDIRECT == "REDIRECT") {
+                    window.location.href = xhr.getResponseHeader("CONTEXTPATH");
+                }
+            }
+        });
+    });
+    /*
+    执行对主页面信息的个性化
+    */
+    {
+        var roletype=$.cookie("role");
+        switch(Number(roletype)){
+            case 1:{
+                $("#AdminIn").text($.cookie("admin1"));
+                $("#PassIn").text($.cookie("password1"));
+                $(".Num1").text($.cookie("name1"));
+                $(".TEA").hide();
+                $(".STU").hide();
+                $(".DEF").show();
+                break;
+            }
+            case 2:{
+                $("#AdminIn").text($.cookie("admin2"));
+                $("#PassIn").text($.cookie("password2"));
+                $("#NameQ,.Num1").text($.cookie("tName"));
+                $("#SexQ").text($.cookie("tSex"));
+                $("#SubQ").text($.cookie("tSubject"));
+                $(".DEF").hide();
+                $(".STU").hide();
+                $(".TEA").show();
+                break;
+            }
+            case 3:{
+                $("#AdminIn").text($.cookie("admin3"));
+                $("#PassIn").text($.cookie("password3"));
+                $("#NameQ,.Num1").text($.cookie("name"));
+                $("#SexQ").text($.cookie("sex"));
+                $("#SubQ").text($.cookie("subject"));
+                $(".TEA").hide();
+                $(".DEF").hide();
+                $(".STU").show();
+                break;
+            }
+        }
+    }
+    /*
+    引入密码修改信息
+    */
+    $("#UpPas").click(function(){
+        var ad=$("#AdminIn").text();
+        $(".PassAdmin").text(ad);
+    });
+    $("#addPass").change(function(){
+        var ad=$("#AdminIn").text();
+        var pa=$("#addPass").val();
+        $("#exampleModal4").find("[href]").attr("href","updatePass/"+ad+"/"+pa);
+        console.log($("#exampleModal4").find("[href]").attr("href"));
+    });
+});
+</script>
+</html>

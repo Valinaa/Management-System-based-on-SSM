@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecust.dao.StudentMapper">
+<insert id="addStudent" parameterType="cn.ecust.entity.Student">
+insert into Student
+(number,name,sex,age,subject)
+values(#{number},#{name},#{sex},#{age},#{subject})
+</insert>
+<update id="updateStu">
+update Student 
+set
+    age=#{age},
+    subject=#{subject}
+where number=#{number}
+</update>
+<delete id="deleteStu">
+delete 
+from Student
+where number=#{number}
+</delete>
+
+<select id="selectAll" resultType="cn.ecust.entity.Student">
+    select *
+    from Student
+</select>
+    <select id="selectByAdmin" resultType="cn.ecust.entity.Student">
+        select *
+        from Student
+        where number=#{number}
+    </select>
+</mapper>

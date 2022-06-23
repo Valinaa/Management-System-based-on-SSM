@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+  <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
+  <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+  <script src="/static/jquery.dataTables.min.js" th:src="@{/jquery.dataTables.min.js}"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="/static/myjQ.js" th:src="@{/myjQ.js}"></script>
+  <style type="text/css">
+/*    body{
+		background: url('') no-repeat 0px 0px;
+        background-size: 100% 100%;
+	}
+    html,body{
+        height: 100%;
+        overflow: auto;
+    }
+    */
+    footer{
+        text-align: center;
+        font-family: sans-serif;
+        right: 0px;
+        left: 0px;
+        color: dodgerblue;
+    }
+    footer span{
+        font-weight: bold;
+    }
+    </style>
+  <title>考试信息展示</title>
+</head>
+<body>
+<!--导航栏引入-->
+<div th:replace="allTeacher :: navbarmod"></div>
+<!--表格设计-->
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="page-header">
+        <h1>
+          <small style="font-family: '楷体';color: #BE7140E0">考试列表<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">详细信息</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 column">
+      <button class="btn btn-primary" style="visibility: hidden" data-bs-toggle="modal" data-bs-target="#exampleModal3">新增</button>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+        <thead class="table-light">
+        <tr class="text-center">
+          <th><abbr title="
+1:全专业统考
+2:专业考试"
+          >考试类型</abbr></th>
+          <th>考试编号</th>
+          <th>考试名称</th>
+          <th>考试科目</th>
+          <th>考试开始时间</th>
+          <th>考试持续时间(分)</th>
+          <th>备注</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <tr th:each="Exam : ${allE}">
+          <td th:text="${Exam.type}"></td>
+          <td th:text="${Exam.eid}"></td>
+          <td th:text="${Exam.eName}"></td>
+          <td th:text="${Exam.eSubject}"></td>
+          <td th:text="${Exam.time}"></td>
+          <td th:text="${Exam.durations}"></td>
+          <td th:text="${Exam.remark}"></td>
+          <td>
+            <div class="btn-group">
+              <a id="UpDate" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
+              <a id="DelEte" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--侧边栏引入-->
+<div th:replace="allTeacher :: offcanvas"></div>
+<!-- 考试信息修改表单框 -->
+<form action="#" method="post">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">信息修改</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label" style="color: black;font-size: 20px"> 考试编号：</label>
+              <span class="form-text eid" style="color: black;font-size: 20px">编号</span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addona">考试名称：</span>
+            <input type="text" name="eName" class="form-control initAdmin" placeholder="请填写更改后的考试名" aria-label="eName" aria-describedby="basic-addona">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addonb">考试开始时间：</span>
+            <input type="datetime-local" name="time" class="form-control" step="01" placeholder="请填写更改后的开始时间" aria-label="time" aria-describedby="basic-addonb">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addonc">考试持续时间：</span>
+            <input type="number" name="durations" class="form-control" placeholder="请填写更改后的限时时间" aria-label="durations" aria-describedby="basic-addonc">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addoncc">考试备注：</span>
+            <input type="text" name="remark" class="form-control" placeholder="请填写更改后的备注" aria-label="remark" aria-describedby="basic-addoncc">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button class="btn btn-primary">确定修改</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!--删除确认弹出框-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">确定删除这次考试？</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label class="col-form-label" style="color: black;font-size: 20px"> 考试编号：</label>
+            <span class="form-text eid" style="color: black;font-size: 20px">编号</span>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label class="col-form-label" style="color: black;font-size: 20px"> 考试科目：</label>
+            <span class="form-text eSU" style="color: black;font-size: 20px">科目</span>
+          </div>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label class="col-form-label" style="color: black;font-size: 20px"> 考试时间：</label>
+            <span class="form-text ti" style="color: black;font-size: 20px">时间</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <a id="DelTea" class="btn btn-primary" href="exam/deleteExam/{Exam.eid}">确定删除</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--密码修改功能引入-->
+<div th:replace="allTeacher :: updatePassword"></div>
+<!--添加专业考试功能引入-->
+<div th:replace="allTeacher :: addExamfr"></div>
+<footer class="sticky-bottom">
+  <span>CopyRight</span><br>
+  <span>Team：</span>重案七组<br>
+  <span>Course：</span>Managerment Information Systems<br>
+  <span>E-mail：</span>www.EcustCK@163.com
+</footer>
+</body>
+<script>
+$(document).ready(function(){
+    /*
+    弹出框信息引入
+    */
+    $("#UpDate,#DelEte,#DelTea").click(function(){
+        //获得当前行
+        var currentRow=$(this).closest("tr");
+        var eid=currentRow.find("td:eq(1)").text();
+        var EName=currentRow.find("td:eq(2)").text();
+        var eSU=currentRow.find("td:eq(3)").text();
+        var ti=currentRow.find("td:eq(4)").text();
+        var dura=currentRow.find("td:eq(5)").text();
+        var Remark=currentRow.find("td:eq(6)").text();
+        $(".eSU").text(eSU);
+        $(".eid").text(eid);
+        $(".ti").text(ti);
+        $("input[name='eName']").val(EName);
+        $("input[name='time']").val(ti);
+        $("input[name='durations']").val(dura);
+        $("input[name='remark']").val(Remark);
+        $("#DelTea").attr("href","exam/deleteExam/"+eid);
+        $("#exampleModal").parent().attr("action","exam/updateExam/"+eid);
+        console.log($("#DelTea").attr("href"));
+    });
+    $("ul.dropdown-menu").find("button.TEA").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+    $("#Modal5").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+});
+</script>
+</html>

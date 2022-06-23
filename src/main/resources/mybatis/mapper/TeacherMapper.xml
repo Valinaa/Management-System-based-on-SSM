@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecust.dao.TeacherMapper">
+<insert id="addTeacher" parameterType="cn.ecust.entity.Teacher">
+insert into Teacher
+(tNumber,tName,tSex,tSubject)
+values(#{tNumber},#{tName},#{tSex},#{tSubject})
+</insert>
+<delete id="deleteTea">
+delete 
+from Teacher
+where tNumber=#{tNumber}
+</delete>
+<update id="updateTea">
+update Teacher
+set
+    tSubject=#{tSubject}
+where tNumber=#{tNumber}
+</update>
+<select id="selectAll" resultType="cn.ecust.entity.Teacher">
+select *
+from Teacher
+</select>
+    <select id="selectByAdmin" resultType="cn.ecust.entity.Teacher">
+        select *
+        from Teacher
+        where tNumber=#{tNumber}
+    </select>
+</mapper>

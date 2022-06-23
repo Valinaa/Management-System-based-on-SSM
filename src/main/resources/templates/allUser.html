@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
+    <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+    <script src="/static/jquery.dataTables.min.js" th:src="@{/jquery.dataTables.min.js}"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/myjQ.js" th:src="@{/myjQ.js}"></script>
+    <style type="text/css">
+    footer{
+        text-align: center;
+        font-family: sans-serif;
+        right: 0px;
+        left: 0px;
+        color: darkblue;
+    }
+    footer span{
+        font-weight: bold;
+    }
+    </style>
+    <title>用户信息展示</title>
+</head>
+<body>
+<!--导航栏引入-->
+<div th:replace="allTeacher :: navbarmod"></div>
+<!--表格设计-->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small style="font-family: '楷体';color: #1993E5FF;">用户列表<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">已注册用户信息</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 column">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">新增</button>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+                <thead class="table-light">
+                <tr class="text-center">
+                    <th>编号</th>
+                    <th><abbr title="
+1:管理员
+2:教师
+3:学生"
+                    >身份</abbr></th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <tr th:each="User : ${all}">
+                    <td th:text="${User.uid}"></td>
+                    <td th:text="${User.role}"></td>
+                    <td th:text="${User.admin}"></td>
+                    <td th:text="${User.password}"></td>
+                    <td>
+                    <div class="btn-group">
+                        <a id="UpDate" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
+                        <button id="DelEte" th:disabled="${User.role} ne 1" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</button>
+                    </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--侧边栏引入-->
+<div th:replace="allTeacher :: offcanvas"></div>
+<!-- 信息修改弹出框表单 -->
+<form action="#" method="post">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">信息修改</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto S">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 编号：</label>
+                <span class="form-text UID" style="color: black;font-size: 20px">编号</span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">用户名：</span>
+            <input type="text" name="admin" class="form-control initAdmin2" placeholder="请填写更改后的用户名" aria-label="admin" aria-describedby="basic-addon1">
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <span class="form-text IDrepeat2" style="font-size: small"></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">密码：</span>
+            <input type="text" name="password" class="form-control" placeholder="请填写更改后的密码" aria-label="password" aria-describedby="basic-addon2">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button class="btn btn-primary">确定修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!--删除确认弹出框-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">确定删除这位管理员的信息？</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto S">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 编号：</label>
+                <span class="form-text UID" style="color: black;font-size: 20px">编号</span>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <a id="DelUser" class="btn btn-primary" href="user/deleteUser/{User.uid}">确定删除</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--新增管理员弹出框-->
+<form action="user/addUser" method="post">
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">新增管理员</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon6">编号：</span>
+            <input type="text" name="uid" class="form-control" aria-label="uid" aria-describedby="basic-addon6" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon4">用户名：</span>
+            <input type="text" name="admin" class="form-control initAdmin" aria-label="admin" aria-describedby="basic-addon4" required>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <span class="form-text IDrepeat" style="font-size: small"></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5">密码：</span>
+            <input type="text" name="password" class="form-control" aria-label="password" aria-describedby="basic-addon5" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button class="btn btn-primary">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!--密码修改功能引入-->
+<div th:replace="allTeacher :: updatePassword"></div>
+<footer class="sticky-bottom">
+    <span>CopyRight</span><br>
+    <span>Team：</span>重案七组<br>
+    <span>Course：</span>Managerment Information Systems<br>
+    <span>E-mail：</span>www.EcustCK@163.com
+</footer>
+</body>
+<script>
+$(document).ready(function(){
+    /*
+    弹出框信息引入
+    */
+    $("#UpDate,#DelEte,#DelUser").click(function(){
+        //获得当前行
+        var currentRow=$(this).closest("tr"); 
+        var uid=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+        var ad=currentRow.find("td:eq(2)").text();
+        var pa=currentRow.find("td:eq(3)").text();
+        $(".UID").text(uid);
+        $("#basic-addon1").next().val(ad);
+        $("#basic-addon2").next().val(pa);
+        $("#DelUser").attr("href","user/deleteUser/"+uid);
+        $("#exampleModal").parent().attr("action","user/updateUser/"+uid);
+    });
+    $("ul.dropdown-menu").find("button.TEA").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+    $("#Modal5").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+    /*
+    Ajax检验用户名是否重复
+    */
+    $(".initAdmin").change(function(){
+        var ad=$(".initAdmin").val();
+        $.post("/CheckAdmin",{admin:ad},function(Admin){
+            $(".IDrepeat").html(Admin);
+        });
+    });
+    $(".initAdmin2").change(function(){
+        var ad2=$(".initAdmin2").val();
+        $.post("/CheckAdmin",{admin:ad2},function(Admin){
+            $(".IDrepeat2").html(Admin);
+        });
+    });
+});
+</script>
+</html>

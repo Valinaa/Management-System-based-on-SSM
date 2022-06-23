@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecust.dao.UserMapper">
+
+
+    <select id="addUser" parameterType="cn.ecust.entity.User" resultType="java.lang.Integer">
+    insert into User
+    (uid,role,admin,password)
+    values(#{uid},#{role},#{admin},#{password})
+    </select>
+
+    <select id="selectAdmPas" resultType="java.util.Map">
+    select admin,password
+    from User
+    </select>
+
+    <update id="updateUser">
+    update User
+    set
+        admin=#{admin},
+        password=#{password}
+    where uid=#{uid}
+    </update>
+    <update id="updatePass">
+        update User
+        set
+            password=#{password}
+        where admin=#{admin}
+    </update>
+
+    <delete id="deleteUser">
+    delete
+    from User
+    where uid=#{uid}
+    </delete>
+
+    <select id="selectUid" resultType="java.lang.String">
+    select uid
+    from User
+    </select>
+
+    <select id="selectAdmin" resultType="java.lang.String">
+        select admin
+        from User
+    </select>
+    <select id="selectByAdmin" resultType="java.lang.String">
+        select uid
+        from User
+        where admin=#{admin}
+    </select>
+    <select id="selectAll" resultType="cn.ecust.entity.User">
+        select *
+        from User
+    </select>
+
+</mapper>

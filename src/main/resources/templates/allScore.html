@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
+    <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+    <script src="/static/jquery.dataTables.min.js" th:src="@{/jquery.dataTables.min.js}"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/myjQ.js" th:src="@{/myjQ.js}"></script>
+    <style type="text/css">
+/*    body{
+		background: url('') no-repeat 0px 0px;
+        background-size: 100% 100%;
+	}
+    html,body{
+        height: 100%;
+        overflow: auto;
+    }
+    */
+    footer{
+        text-align: center;
+        font-family: sans-serif;
+        right: 0px;
+        left: 0px;
+        color: dodgerblue;
+    }
+    footer span{
+        font-weight: bold;
+    }
+    </style>
+    <title>考试信息展示</title>
+</head>
+<body>
+<!--导航栏引入-->
+<div th:replace="allTeacher :: navbarmod"></div>
+<!--表格设计-->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small style="font-family: '楷体';color: #BE7140E0">成绩列表<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">详细信息</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 column">
+            <button class="btn btn-primary" style="visibility: hidden" data-bs-toggle="modal" data-bs-target="#exampleModal3">新增</button>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+                <thead class="table-light">
+                <tr class="text-center">
+                    <th>成绩编号</th>
+                    <th>考试编号</th>
+                    <th>学生学号</th>
+                    <th>成绩</th>
+                    <th>总分</th>
+                    <th class="TEA">操作</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                <tr th:each="Escore : ${allS}">
+                    <td th:text="${Escore.sid}"></td>
+                    <td th:text="${Escore.examId}"></td>
+                    <td th:text="${Escore.sNumber}"></td>
+                    <td th:text="${Escore.score}"></td>
+                    <td th:text="${Escore.totalScore}"></td>
+                    <td class="TEA">
+                        <div class="btn-group">
+                            <a id="UpDate" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
+                            <a id="DelEte" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--侧边栏引入-->
+<div th:replace="allTeacher :: offcanvas"></div>
+<!-- 成绩修改表单框 -->
+<form action="#" method="post">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">成绩修改</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label" style="color: black;font-size: 20px"> 考试编号：</label>
+                            <span class="form-text eid" style="color: black;font-size: 20px">编号</span>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label" style="color: black;font-size: 20px">学生学号：</label>
+                            <span class="form-text Numberr" style="color: black;font-size: 20px">学号</span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addona">成绩：</span>
+                        <input type="text" name="score" class="form-control" placeholder="请填写更改后的成绩" aria-label="score" aria-describedby="basic-addona">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button class="btn btn-primary">确定修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!--删除确认弹出框-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">确定删除这条成绩？</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="col-form-label" style="color: black;font-size: 20px"> 考试编号：</label>
+                        <span class="form-text eid" style="color: black;font-size: 20px">编号</span>
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="col-form-label" style="color: black;font-size: 20px"> 学生学号：</label>
+                        <span class="form-text Numberr" style="color: black;font-size: 20px">学号</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <a id="DelTea" class="btn btn-primary" href="Escore/deleteEscore/{Escore.sid}">确定删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--密码修改功能引入-->
+<div th:replace="allTeacher :: updatePassword"></div>
+<!--添加专业考试功能引入-->
+<div th:replace="allTeacher :: addExamfr"></div>
+<footer class="sticky-bottom">
+    <span>CopyRight</span><br>
+    <span>Team：</span>重案七组<br>
+    <span>Course：</span>Managerment Information Systems<br>
+    <span>E-mail：</span>www.EcustCK@163.com
+</footer>
+</body>
+<script>
+$(document).ready(function(){
+    /*
+    弹出框信息引入
+    */
+    $("#UpDate,#DelEte,#DelTea").click(function(){
+        //获得当前行
+        var currentRow=$(this).closest("tr");
+        var eid=currentRow.find("td:eq(1)").text();
+        var sid=currentRow.find("td:eq(0)").text();
+        var Numberr=currentRow.find("td:eq(2)").text();
+        $(".eid").text(eid);
+        $(".Numberr").text(Numberr);
+        $("#DelTea").attr("href","score/deleteEscore/"+sid);
+        $("#exampleModal").parent().attr("action","score/updateScore/"+sid);
+        console.log($("#DelTea").attr("href")+"\n"+$("#exampleModal").parent().attr("action"));
+    });
+    $("ul.dropdown-menu").find("button.TEA").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+    $("#Modal5").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+});
+</script>
+</html>

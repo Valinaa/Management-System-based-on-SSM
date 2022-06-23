@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecust.dao.ExamMapper">
+    <insert id="addExam" parameterType="cn.ecust.entity.Exam" keyProperty="eid" useGeneratedKeys="true">
+        insert into Exam
+        (type,eName,time,eSubject,durations,remark)
+        values(#{type},#{eName},#{time},#{eSubject},#{durations},#{remark})
+    </insert>
+    <delete id="deleteExam">
+        delete
+        from Exam
+        where eid=#{eid}
+    </delete>
+    <select id="selectAll" resultType="cn.ecust.entity.Exam">
+        select *
+        from Exam
+    </select>
+    <update id="updateExam">
+        update Exam
+        set
+            eName=#{eName},
+            time=#{time},
+            durations=#{durations},
+            Remark=#{remark}
+        where eid=#{eid}
+</update>
+</mapper>

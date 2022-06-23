@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ecust.dao.QuestionsMapper">
+
+    <insert id="addQuestion" parameterType="cn.ecust.entity.Questions" keyProperty="qid" useGeneratedKeys="true">
+        insert into Questions
+        (QSub,QType,question,answer,marks)
+        values(#{QSub},#{QType},#{question},#{answer},#{marks})
+    </insert>
+    <insert id="addTemp">
+        insert into ${tableName}
+        (qid,QSub,QType,question,answer,marks)
+        values(#{Question.qid},#{Question.QSub},#{Question.QType},#{Question.question},#{Question.answer},#{Question.marks})
+    </insert>
+    <update id="updateQuestion">
+        update Questions
+        set
+            QSub=#{QSub},
+            QType=#{QType},
+            question=#{question},
+            answer=#{answer},
+            marks=#{marks}
+        where qid=#{qid}
+    </update>
+    <update id="createTemp">
+        create table ${tableName} (
+        qid smallint not null,
+        QSub varchar(20) not null,
+        QType enum('1','2','3','4','5') not null,
+        question text not null,
+        answer text,
+        marks tinyint not null
+        )
+    </update>
+    <delete id="deleteQuestion">
+        delete
+        from Questions
+        where qid = #{qid}
+    </delete>
+    <delete id="dropTemp">
+        drop table if exists ${tableName}
+    </delete>
+    <select id="selectAll" resultType="cn.ecust.entity.Questions">
+        select *
+        from Questions
+    </select>
+    <select id="selectByQid" resultType="cn.ecust.entity.Questions">
+        select *
+        from Questions
+        where qid = #{qid}
+    </select>
+    <select id="selectTemp" resultType="cn.ecust.entity.Questions">
+        select *
+        from ${tableName}
+    </select>
+    <select id="getQuesAnswer" resultType="java.util.HashMap">
+        select qid,answer
+        from Questions
+    </select>
+</mapper>

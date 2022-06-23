@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
+    <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
+    <script src="/static/jquery.dataTables.min.js" th:src="@{/jquery.dataTables.min.js}"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/static/myjQ.js" th:src="@{/myjQ.js}"></script>
+    <style type="text/css">
+/*    body{
+		background: url('') no-repeat 0px 0px;
+        background-size: 100% 100%;
+	}
+    html,body{
+        height: 100%;
+        overflow: auto;
+    }
+    */
+    footer{
+        text-align: center;
+        font-family: sans-serif;
+        right: 0px;
+        left: 0px;
+        color: dodgerblue;
+    }
+    footer span{
+        font-weight: bold;
+    }
+    </style>
+    <title>教师信息展示</title>
+</head>
+<body>
+<!--导航栏设计-->
+<div th:fragment="navbarmod">
+<nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top" style="background-color: #e3f2fd">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <img src="/static/SVG/building.svg" th:src="@{/SVG/building.svg}" alt="building" width="16" height="16">
+            <span style="font-style: fantasy;color: blueviolet;font-weight: bold;">GMIS</span>
+        </div>
+        <!--<a class="navbar-brand" href="#">Navbar</a>-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="mainView">
+                        <img src="/static/SVG/house-heart.svg" th:src="@{/SVG/house-heart.svg}" alt="house-heart" width="16" height="16">
+                        首页
+                    </a>
+                </li>
+                <li class="nav-item TEA">
+                    <a class="nav-link active" aria-current="page" href="allQuestions">
+                        <img src="/static/SVG/stack.svg" th:src="@{/SVG/stack.svg}" alt="stack" width="16" height="16">
+                        题库
+                    </a>
+                </li>
+                <li class="nav-item TEA">
+                    <a id="Modal5" type="button" class="nav-link active" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+                        <img src="/static/SVG/safe-fill.svg" th:src="@{/SVG/safe-fill.svg}" alt="safe-fill" width="16" height="16">
+                        专业考试添加
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="allScore">
+                        <img src="/static/SVG/stars.svg" th:src="@{/SVG/stars.svg}" alt="stars" width="16" height="16">
+                        成绩查询
+                    </a>
+                </li>
+                <li class="nav-item TEA DEF">
+                    <a class="nav-link active" aria-current="page" href="allStudent">
+                        <img src="/static/SVG/file-person-fill.svg" th:src="@{/SVG/file-person-fill.svg}" alt="file-person-fill" width="16" height="16">
+                        学生信息
+                    </a>
+                </li>
+                <li class="nav-item TEA DEF">
+                    <a class="nav-link active" aria-current="page" href="allExam">
+                        <img src="/static/SVG/clipboard2-check-fill.svg" th:src="@{/SVG/clipboard2-check-fill.svg}" alt="clipboard2-check-fill" width="16" height="16">
+                        考试信息
+                    </a>
+                </li>
+                <li class="nav-item DEF">
+                    <a class="nav-link active" aria-current="page" href="allTeacher">
+                        <img src="/static/SVG/person-badge.svg" th:src="@{/SVG/person-badge.svg}" alt="person-badge" width="16" height="16">
+                        教师信息
+                    </a>
+                </li>
+                <li class="nav-item DEF">
+                    <a class="nav-link active" aria-current="page" href="allUser">
+                        <img src="/static/SVG/person-workspace.svg" th:src="@{/SVG/person-workspace.svg}" alt="person-workspace" width="16" height="16">
+                        已注册用户信息
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">功能待扩展...</a>
+                </li>
+            </ul>
+            <div class="navbar-brand navbar-right">
+                <a id="Roles" class="nav-link disabled" style="font-style: sans-serif;font-size:16px;"></a>
+            </div>
+            <div class="navbar-right nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-outline-info">
+                        <img src="/static/SVG/person.svg" th:src="@{/SVG/person.svg}" alt="person" width="16" height="16">
+                        <span class="Num1"></span>
+                    </button>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="mainView">首页</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item TEA" href="allQuestions" style="display: none;">题库</a></li>
+                    <li><button type="button" class="dropdown-item TEA" data-bs-toggle="modal" data-bs-target="#exampleModal5" style="display: none">添加专业考试</button></li>
+                    <li><a class="dropdown-item DEF" href="#" style="display: none;">添加全专业统考</a></li>
+                    <li><hr class="dropdown-divider TEA DEF" style="display: none;"></li>
+                    <li><a class="dropdown-item STU" href="allScore" style="display: none;">成绩查询</a></li>
+                    <li><a class="dropdown-item TEA DEF" href="allStudent" style="display: none;">学生信息</a></li>
+                    <li><a class="dropdown-item TEA DEF" href="allExam" style="display: none;">考试信息</a></li>
+                    <li><a class="dropdown-item DEF" href="allTeacher" style="display: none;">教师信息</a></li>
+                    <li><a class="dropdown-item DEF" href="allUser" style="display: none;">已注册用户信息</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button type="button" id="UpPas" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal4">修改密码</button></li>
+                </ul>
+            </div>
+            <div class="navbar-brand navbar-right">
+                <a class="btn btn-outline-warning" style="font-style: sans-serif;font-size:16px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    <img src="/static/SVG/person-check-fill.svg" th:src="@{/SVG/person-check-fill.svg}" alt="person-check-fill" width="16" height="16">
+                    个人信息</a>
+            </div>
+        </div>
+    </div>
+</nav>
+</div>
+<!--表格设计-->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    <small style="font-family: '楷体';color: #BE7140E0">用户列表<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">教师信息</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 column">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">新增</button>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+                <thead class="table-light">
+                <tr class="text-center">
+                    <th>工号(编号)</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>教授专业</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr th:each="Teacher : ${all}">
+                        <td th:text="${Teacher.tNumber}"></td>
+                        <td th:text="${Teacher.tName}"></td>
+                        <td th:text="${Teacher.tSex}"></td>
+                        <td th:text="${Teacher.tSubject}"></td>
+                        <td>
+                        <div class="btn-group">
+                            <a id="UpDate" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
+                            <a id="DelEte" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</a>
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--侧边栏设计-->
+<div th:fragment="offcanvas">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title" id="offcanvasExampleLabel">个人信息</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+        <p><a class="btn btn-outline-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        账号信息
+        </a></p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <span style="font-size: 20px;font-weight: bold;">用户名：</span><span id="AdminIn"></span><br>
+                <span style="font-size: 20px;font-weight: bold;">密码：</span><span id="PassIn"></span>
+                <button type="button" style="display: none" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleModal6">修改账号</button>
+            </div>
+        </div><br>
+        <p><button class="btn btn-outline-secondary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+        个人资料
+        </button></p>
+            <div style="min-height: 120px;">
+                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="card card-body" style="width: 300px;">
+                        <div class="TEA STU"><span style="font-size: 20px;font-weight: bold;">姓名：</span><span id="NameQ"></span></div>
+                        <div class="DEF"><span style="font-size: 20px;font-weight: bold;">编号：</span><span th:each="cookie :${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('name1')}" th:text="${cookie.getValue()}"></span></div>
+                        <div class="STU"><span style="font-size: 20px;font-weight: bold;">年龄：</span><span th:each="cookie :${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('age')}" th:text="${cookie.getValue()}"></span></div>
+                        <div class="TEA STU"><span style="font-size: 20px;font-weight: bold;">性别：</span><span id="SexQ"></span></div>
+                        <div class="STU"><span style="font-size: 20px;font-weight: bold;">学号：</span><span id="STUNUM" th:each="cookie :${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('num')}" th:text="${cookie.getValue()}"></span></div>
+                        <div id="TEANUM" class="TEA"><span style="font-size: 20px;font-weight: bold;">工号：</span><span th:each="cookie :${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('tNum')}" th:text="${cookie.getValue()}"></span></div>
+                        <div class="TEA STU"><span style="font-size: 20px;font-weight: bold;">专业：</span><span id="SubQ"></span></div>
+                        <button style="display: none;" type="button" class="btn btn-outline-warning">修改个人资料</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- 教师信息修改表单框 -->
+<form action="#" method="post">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">信息修改</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 姓名：</label>
+                <span class="form-text Name" style="color: black;font-size: 20px">姓名</span>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 工号：</label>
+                <span class="form-text Number" style="color: black;font-size: 20px">工号</span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addona">用户名：</span>
+            <input type="text" name="admin" class="form-control initAdmin" placeholder="请填写更改后的用户名" aria-label="admin" aria-describedby="basic-addona">
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <span class="form-text IDrepeat" style="font-size: small"></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addonb">密码：</span>
+            <input type="text" name="password" class="form-control" placeholder="请填写更改后的密码" aria-label="password" aria-describedby="basic-addonb">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addonc">专业：</span>
+            <input type="text" name="subject" class="form-control" placeholder="请填写更改后的专业" aria-label="subject" aria-describedby="basic-addonc">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button class="btn btn-primary">确定修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!--删除确认弹出框-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">确定删除这位教师的信息？</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 姓名：</label>
+                <span class="form-text Name" style="color: black;font-size: 20px">姓名</span>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 工号：</label>
+                <span class="form-text Number" style="color: black;font-size: 20px">工号</span>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 专业：</label>
+                <span class="form-text Subject" style="color: black;font-size: 20px">专业</span>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <a id="DelTea" class="btn btn-primary" href="teacher/deleteTea/{Teacher.tNumber}">确定删除</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--新增用户弹出框-->
+<form action="teacher/addTeacher" method="post">
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">新增教师</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">工号：</span>
+            <input type="text" name="tNumber" class="form-control" aria-label="tNumber" aria-describedby="basic-addon1" minlength=5 maxlength=5 required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">姓名：</span>
+            <input type="text" name="tName" class="form-control" aria-label="tName" aria-describedby="basic-addon2" required>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">性别</label>
+            <select name="tSex" class="form-select" id="inputGroupSelect01">
+                <option value="男" selected>男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon4">用户名：</span>
+            <input type="text" name="admin" class="form-control initAdmin2" aria-label="admin" aria-describedby="basic-addon4" required>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <span class="form-text IDrepeat2" style="font-size: small"></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon5">密码：</span>
+            <input type="text" name="password" class="form-control" aria-label="password" aria-describedby="basic-addon5" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon6">专业：</span>
+            <input type="text" name="tSubject" class="form-control" aria-label="subject" aria-describedby="basic-addon6" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button class="btn btn-primary">添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!--密码修改弹出框-->
+<div th:fragment="updatePassword">
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel4">修改密码</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto S">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 用户名：</label>
+                <span class="form-text PassAdmin" style="color: black;font-size: 20px">用户名</span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10">密码：</span>
+            <input type="text" id="addPass" class="form-control" aria-label="password" aria-describedby="basic-addon10" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <a class="btn btn-primary" href="updatePass/{admin}/{password}">确定修改</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--专业考试添加弹出框-->
+<div th:fragment="addExamfr">
+<form action="#" id="AEform" method="post">
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel5">添加专业考试</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" style="color: black;font-size: 20px"> 专业：</label>
+                <span class="form-text QSt" style="color: black;font-size: 20px">专业</span>
+                <input id="Es" type="hidden" name="eSubject">
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10D3">考试名称：</span>
+            <input type="text" name="eName" class="form-control" aria-label="eName" aria-describedby="basic-addon10D3" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10D">考试开始时间：</span>
+            <input type="datetime-local" name="time" class="form-control" step="01" aria-label="time" aria-describedby="basic-addon10D" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10D1">考试持续时间：</span>
+            <input type="number" name="durations" class="form-control" aria-label="durations" aria-describedby="basic-addon10D1" placeholder="单位：分" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10D4">备注：</span>
+            <input type="text" name="remark" class="form-control" aria-label="remark" aria-describedby="basic-addon10D4" placeholder="输入考试的一些相关信息" required>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon10E">选题：</span>
+            <input type="text" class="form-control" name="qids" aria-label="qids" aria-describedby="basic-addon10E" placeholder="请输入题目编号，每个编号请用半角的,隔开" required>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div id="Ifatab">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <a class="btn btn-primary" type="button">确定</a>
+        </div>
+      </div>
+   </div>
+  </div>
+</div>
+</form>
+</div>
+<!-- 账号修改弹出框 -->
+<div th:fragment="updateAdmin">
+<form action="#" method="post">
+<div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel6">账号修改</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon16">用户名：</span>
+            <input type="text" name="admin" class="form-control initAdmin3" placeholder="请填写更改后的用户名" aria-label="admin" aria-describedby="basic-addon16">
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <span class="form-text IDrepeat3" style="font-size: small"></span>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon26">密码：</span>
+            <input type="text" name="password" class="form-control" placeholder="请填写更改后的密码" aria-label="password" aria-describedby="basic-addon26">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确定修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<footer class="sticky-bottom">
+    <span>CopyRight</span><br>
+    <span>Team：</span>重案七组<br>
+    <span>Course：</span>Managerment Information Systems<br>
+    <span>E-mail：</span>www.EcustCK@163.com
+</footer>
+</body>
+<script>
+$(document).ready(function(){
+    /*
+    弹出框信息引入
+    一个事件通过函数绑定多个对象
+    */
+    function modalInsert(){
+        //获得当前行
+        var currentRow=$(this).closest("tr"); 
+        var number=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+        var name=currentRow.find("td:eq(1)").text(); 
+        var subject=currentRow.find("td:eq(3)").text(); 
+        $(".Number").text(number);
+        $(".Name").text(name);
+        $(".Subject").text(subject);
+        $("#basic-addonc").next().val(subject);
+        $("#DelTea").attr("href","teacher/deleteTea/"+number);
+        $("#exampleModal").parent().attr("action","teacher/updateTea/"+number);
+        console.log($("#DelTea").attr("href")+"\n"+$("#exampleModal").parent().attr("action"));
+    }
+    $("#UpDate,#DelEte,#DelTea").bind("click",modalInsert);
+    $("ul li").children("a[aria-current='page']").bind("click",modalInsert);
+    $("ul.dropdown-menu").find("button.TEA").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+    $("#Modal5").click(function(){
+        $(".QSt").text($("#SubQ").text());
+    });
+
+
+
+        /*
+        尚未完善的功能
+        $("#PassIn").next().click(function(){
+        $(".initAdmin3").val($("#AdminIn").text());
+        $("#basic-addon26").next().val($("#PassIn").text());
+        */
+        /*
+        switch(Number($.cookie("role"))){
+            case 1:{
+                $("#exampleModal6").parent().attr("action","user/updateUser/"+$("#collapseWidthExample").find(".DEF").text());
+            }
+            case 2:{
+                $("#exampleModal6").parent().attr("action","user/updateUser/"+$("#TEANUM").find("span").last().text());
+            }
+            case 3:{
+                $("#exampleModal6").parent().attr("action","user/updateUser/"+$("#STUNUM").find("span").last().text());
+            }
+            default:{
+                alert("您的身份未确定！");
+            }
+        }
+    });*/
+    /*
+    $("#exampleModal6").find("button .btn-primary").click(function(){
+        console.log($("#exampleModal6").parent().attr("action"));
+    });*/
+
+    /*
+    Ajax检验用户名是否重复
+    */
+    $(".initAdmin").change(function(){
+        var ad=$(".initAdmin").val();
+        $.post("/CheckAdmin",{admin:ad},function(Admin){
+            $(".IDrepeat").html(Admin);
+        });
+    });
+    $(".initAdmin2").change(function(){
+        var ad2=$(".initAdmin2").val();
+        $.post("/CheckAdmin",{admin:ad2},function(Admin){
+            $(".IDrepeat2").html(Admin);
+        });
+    });
+    $(".initAdmin3").change(function(){
+        var ad3=$(".initAdmin3").val();
+        $.post("/CheckAdmin",{admin:ad3},function(Admin){
+            $(".IDrepeat3").html(Admin);
+        });
+    });
+});
+</script>
+</html>

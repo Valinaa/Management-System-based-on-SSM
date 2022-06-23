@@ -1,0 +1,17 @@
+2022-06-20 17:37:44.317 INFO [main] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 20416 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-20 17:37:44.326 INFO [main] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-20 17:37:45.369 INFO [main] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-20 17:37:45.369 INFO [main] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-20 17:37:45.370 INFO [main] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-20 17:37:45.373 INFO [main] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-20 17:37:45.382 INFO [main] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-20 17:37:45.382 INFO [main] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-20 17:37:45.383 INFO [main] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-20 17:37:45.472 INFO [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-20 17:37:45.568 INFO [main] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-20 17:37:46.085 INFO [main] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} inited
+2022-06-20 17:37:46.625 INFO [main] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-20 17:37:46.658 INFO [main] cn.ecust.DemoApplication : Started DemoApplication in 2.64 seconds (JVM running for 3.428)
+2022-06-20 17:37:54.778 INFO [http-nio-8081-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-20 17:38:24.775 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} closing ...
+2022-06-20 17:38:24.787 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} closed
