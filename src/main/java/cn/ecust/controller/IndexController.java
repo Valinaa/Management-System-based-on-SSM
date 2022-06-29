@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 /**
- * @author Chen Kang
+ * @author Valinaa
  * @Date 2022/5/4
  * @Description 中央控制器
  */
@@ -34,48 +34,6 @@ public class IndexController {
     private ExamService examService;
     @Autowired
     private EscoreService escoreService;
-    
-    /*
-     *执行对管理员的数据储存
-     */
-    
-    @RequestMapping("/RegisCheck1")
-    public String regisAdmin(String admin, String password) {
-        List<String> uList = userService.selectUid();
-        char NUM = 'A';
-        Iterator<String> it = uList.iterator();
-        String adm = String.valueOf(NUM);
-        List<Character> ch = new ArrayList<>();
-        while (it.hasNext()) {
-            if (it.next().length() == 1) {
-                char M = it.next().charAt(0);
-                ch.add(M);
-            }
-        }
-        if (ch.size() >= 1) {
-            int num = NUM;
-            int max = Collections.max(ch);
-            if (num <= max) {
-                num = max + 1;
-            }
-            char C = (char) num;
-            adm = String.valueOf(C);
-            User user = new User();
-            user.setUid(adm);
-            user.setRole(1);
-            user.setAdmin(admin);
-            user.setPassword(password);
-            userService.addUser(user);
-        } else {
-            User user = new User();
-            user.setUid(adm);
-            user.setRole(1);
-            user.setAdmin(admin);
-            user.setPassword(password);
-            userService.addUser(user);
-        }
-        return "Login";
-    }
     
     /*
      *执行对教师的数据储存
@@ -270,8 +228,13 @@ public class IndexController {
     @PutMapping("/password/{admin}/{password}")
     @ResponseBody
     public String toUpdatePassword(@PathVariable("admin") String admin, @PathVariable("password") String password) {
-        userService.updatePass(admin, password);
-        return "密码修改成功！";
+        try {
+            userService.updatePass(admin, password);
+            return "密码修改成功！";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "密码修改失败！";
+        }
     }
     
     /*
@@ -279,7 +242,8 @@ public class IndexController {
      * 根据输入的题号创建对应数据表
      */
     
-    @RequestMapping("/setExam/{type}")
+    @PostMapping("/exam/{type}")
+    @ResponseBody
     public String toSetExam(@PathVariable("type") Integer type, HttpServletRequest request) {
         String eName = request.getParameter("eName");
         String eSubject = request.getParameter("eSubject");
@@ -296,64 +260,70 @@ public class IndexController {
         exam.setTime(time);
         exam.setDurations(durations);
         exam.setRemark(remark);
-        String e = String.valueOf(examService.addExam(exam));
-        System.out.println("自增Eid值为：" + e);
-        e = "Exam" + e;
-        questionsService.createTemp(e);
-        System.out.println("表名为：" + e);
-        String qid = request.getParameter("qids");
-        String[] qids = qid.split(",");
-        for (int i = 0; i < qids.length; i++) {
-            Questions question = questionsService.selectByQid(Integer.parseInt(qids[i]));
-            /*
-             * 将"\n"转化为表单元素与换行符<br>
-             * 通过自增的i值实现不同题目name属性的独立
-             * */
-            switch (Integer.parseInt(question.getQType())) {
-                case 1:
-                    //单选题
-                    String T0 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"A\">";
-                    String T1 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"B\">";
-                    String T2 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"C\">";
-                    String T3 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"D\">";
-                    String B = question.getQuestion().replaceFirst("\\n", T0);
-                    String C = B.replaceFirst("\\n", T1);
-                    String D = C.replaceFirst("\\n", T2);
-                    String E = D.replaceFirst("\\n", T3);
-                    question.setQuestion(E);
-                    break;
-                case 2:
-                    //多选题
-                    String M0 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"A\">";
-                    String M1 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"B\">";
-                    String M2 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"C\">";
-                    String M3 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"D\">";
-                    String B2 = question.getQuestion().replaceFirst("\\n", M0);
-                    String C2 = B2.replaceFirst("\\n", M1);
-                    String D2 = C2.replaceFirst("\\n", M2);
-                    String E2 = D2.replaceFirst("\\n", M3);
-                    question.setQuestion(E2);
-                    break;
-                case 3:
-                    //判断题
-                    String Tr = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"对\">";
-                    String Fa = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"错\">";
-                    String B3 = question.getQuestion().replaceFirst("\\n", Tr);
-                    String C3 = B3.replaceFirst("\\n", Fa);
-                    question.setQuestion(C3);
-                    break;
-                default:
-                    //填空题与简答题
-                    String W = "<br><input name=\"Answer" + i + "\" class=\"form-control\" type=\"text\" placeholder=\"请作答\">";
-                    String B5 = question.getQuestion().replaceAll("\\n", W);
-                    question.setQuestion(B5);
-                    break;
+        try {
+            String e = String.valueOf(examService.addExam(exam));
+            System.out.println("自增Eid值为：" + e);
+            e = "Exam" + e;
+            questionsService.createTemp(e);
+            System.out.println("表名为：" + e);
+            String qid = request.getParameter("qids");
+            String[] qids = qid.split(",");
+            for (int i = 0; i < qids.length; i++) {
+                Questions question = questionsService.selectByQid(Integer.parseInt(qids[i]));
+                /*
+                 * 将"\n"转化为表单元素与换行符<br>
+                 * 通过自增的i值实现不同题目name属性的独立
+                 * */
+                switch (Integer.parseInt(question.getQType())) {
+                    case 1:
+                        //单选题
+                        String T0 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"A\">";
+                        String T1 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"B\">";
+                        String T2 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"C\">";
+                        String T3 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"D\">";
+                        String B = question.getQuestion().replaceFirst("\\n", T0);
+                        String C = B.replaceFirst("\\n", T1);
+                        String D = C.replaceFirst("\\n", T2);
+                        String E = D.replaceFirst("\\n", T3);
+                        question.setQuestion(E);
+                        break;
+                    case 2:
+                        //多选题
+                        String M0 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"A\">";
+                        String M1 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"B\">";
+                        String M2 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"C\">";
+                        String M3 = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"checkbox\" value=\"D\">";
+                        String B2 = question.getQuestion().replaceFirst("\\n", M0);
+                        String C2 = B2.replaceFirst("\\n", M1);
+                        String D2 = C2.replaceFirst("\\n", M2);
+                        String E2 = D2.replaceFirst("\\n", M3);
+                        question.setQuestion(E2);
+                        break;
+                    case 3:
+                        //判断题
+                        String Tr = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"对\">";
+                        String Fa = "<br><input name=\"Answer" + i + "\" class=\"form-check-input\" type=\"radio\" value=\"错\">";
+                        String B3 = question.getQuestion().replaceFirst("\\n", Tr);
+                        String C3 = B3.replaceFirst("\\n", Fa);
+                        question.setQuestion(C3);
+                        break;
+                    default:
+                        //填空题与简答题
+                        String W = "<br><input name=\"Answer" + i + "\" class=\"form-control\" type=\"text\" placeholder=\"请作答\">";
+                        String B5 = question.getQuestion().replaceAll("\\n", W);
+                        question.setQuestion(B5);
+                        break;
+                }
+                questionsService.addTemp(e, question);
+                System.out.println("第" + i + "次插入的qid为" + qids[i]);
+                System.out.println("这一次插入的question是：" + question.getQuestion());
             }
-            questionsService.addTemp(e, question);
-            System.out.println("第" + i + "次插入的qid为" + qids[i]);
-            System.out.println("这一次插入的question是：" + question.getQuestion());
+            return "添加成功！";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "添加失败";
         }
-        return "redirect:/mainView";
+        
     }
     
     /*
@@ -396,9 +366,7 @@ public class IndexController {
      * */
     
     @RequestMapping("/checkAnswer")
-    /*
-      通过实体获取JSON数组
-      */
+    /*通过实体获取JSON数组*/
     public void toCheckAnswer(@RequestBody List<QuesCheck> check, String ExamID, String NUM, HttpServletRequest request, HttpServletResponse response) {
         List<HashMap<String, String>> an = questionsService.getQuesAnswer();
         List<String> li = new ArrayList<>();

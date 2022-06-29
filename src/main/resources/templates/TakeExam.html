@@ -47,6 +47,7 @@
 
 
 
+
     </style>
     <title>欢迎参加在线考试！</title>
 </head>
@@ -112,10 +113,10 @@
     </div>
 </div>
 <footer class="sticky-bottom">
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
@@ -183,7 +184,7 @@ $(document).ready(function(){
         */
         $.ajax({
             url: "checkAnswer?NUM="+$("input[name='NUM']").val()+"&ExamID="+$("input[name='ExamID']").val(),
-            type: "post",
+            type: "POST",
             data: jsonfy,
             contentType:"application/json;charset=utf-8",
             dataType:"json",
@@ -193,7 +194,7 @@ $(document).ready(function(){
             complete:function(xhr){
                  // 通过xhr取得响应头
                 const REDIRECT = xhr.getResponseHeader("REDIRECT");
-                //如果响应头中包含 REDIRECT 则说明是我们需要进行重定向的
+                //响应头包含REDIRECT 进行重定向
                 if (REDIRECT == "REDIRECT") {
                     window.location.href = xhr.getResponseHeader("CONTEXTPATH");
                 }
@@ -258,6 +259,7 @@ $(document).ready(function(){
         })
     });
 });
+
 
 
 

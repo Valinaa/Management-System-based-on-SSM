@@ -43,7 +43,13 @@
 		footer span{
 			font-weight: bold;
 		}
-	</style>
+
+
+
+
+
+
+    </style>
     <title>欢迎来到注册界面！</title>
 </head>
 <body>
@@ -55,7 +61,7 @@
             <div class="col-md-2">
                 <select id="Sel" class="form-select" name="role">
                     <option selected>请选择您的身份</option>
-                    <option value="1">管理员</option>
+                    <option disabled value="1">管理员</option>
                     <option value="2">教师</option>
                     <option value="3">学生</option>
                 </select>
@@ -65,8 +71,10 @@
             <label class="col-md-1 col-form-label" style="width: 105px">用户名：</label>
             <div class="col-md-2">
                 <input type="text" id="initAdmin" class="form-control" name="admin" placeholder="请输入用户名" required>
-            </div><br>
-            <span id="IDrepeat" style="font-size: x-small;font-style: fantasy" class="text-center" th:utext="${Admin}"></span>
+            </div>
+            <br>
+            <span class="text-center" id="IDrepeat" style="font-size: x-small;font-style: fantasy"
+                  th:utext="${Admin}"></span>
         </div>
         <div class="row mb-3 justify-content-center">
             <label class="col-md-1 col-form-label" style="width: 105px">密码：</label>
@@ -100,7 +108,7 @@
                     <input class="form-check-input" type="radio" name="sex" value="男" checked>
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" >女</label>
+                    <label class="form-check-label">女</label>
                     <input class="form-check-input" type="radio" name="sex" value="女">
                 </div>
             </div>
@@ -113,7 +121,7 @@
                     <input class="form-check-input" type="radio" name="tSex" value="男" checked>
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" >女</label>
+                    <label class="form-check-label">女</label>
                     <input class="form-check-input" type="radio" name="tSex" value="女">
                 </div>
             </div>
@@ -146,7 +154,7 @@
             <span id="errMs" style="color:red;font-weight:bold"></span>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-success DEF">提交</button>
+            <button class="btn btn-success DEF" disabled type="button">提交</button>
             <button type="button" class="btn btn-success Tea" style="display: none">提交</button>
             <button type="button" class="btn btn-success Stu" style="display: none">提交</button>
             <button type="reset" class="btn btn-danger">重置</button>
@@ -154,10 +162,12 @@
         </div>
     </form>
 </div>
-    <footer><span>CopyRight</span><br>
-        <span>Team：</span>重案七组<br>
-        <span>Course：</span>Managerment Information Systems<br>
-        <span>E-mail：</span>www.EcustCK@163.com</footer>
+<footer>
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
+</footer>
 </body>
 <script>
 	$(document).ready(function(){
@@ -241,5 +251,11 @@
         },500);
     }
 	});
+
+
+
+
+
+
 </script>
 </html>

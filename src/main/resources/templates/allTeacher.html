@@ -36,6 +36,9 @@
 
 
 
+
+
+
     </style>
     <title>教师信息展示</title>
 </head>
@@ -144,7 +147,7 @@
                                     style="display: none" type="button">添加专业考试
                             </button>
                         </li>
-                        <li><a class="dropdown-item DEF" href="#" style="display: none;">添加全专业统考</a></li>
+                        <!--                        <li><a class="dropdown-item DEF" href="#" style="display: none;">添加全专业统考</a></li>-->
                         <li>
                             <hr class="dropdown-divider TEA DEF" style="display: none;">
                         </li>
@@ -296,7 +299,7 @@
     </div>
 </div>
 <!-- 教师信息修改表单框 -->
-<form action="#" method="post">
+<form id="updateTea">
     <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -342,7 +345,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">取消</button>
-                    <button class="btn btn-primary">确定修改</button>
+                    <button class="btn btn-primary" id="updateTeaB" type="button">确定修改</button>
                 </div>
             </div>
         </div>
@@ -378,13 +381,13 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">取消</button>
-                <a class="btn btn-primary" href="teacher/deleteTea/{Teacher.tNumber}" id="DelTea">确定删除</a>
+                <button class="btn btn-primary" id="deleteTea" type="button">确定删除</button>
             </div>
         </div>
     </div>
 </div>
 <!--新增用户弹出框-->
-<form action="teacher/addTeacher" method="post">
+<form id="addTea">
     <div aria-hidden="true" aria-labelledby="exampleModalLabel3" class="modal fade" id="exampleModal3" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -435,7 +438,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">取消</button>
-                    <button class="btn btn-primary">添加</button>
+                    <button class="btn btn-primary" id="addTeaB" type="button">添加</button>
                 </div>
             </div>
         </div>
@@ -475,7 +478,7 @@
 </div>
 <!--专业考试添加弹出框-->
 <div th:fragment="addExamfr">
-    <form action="#" id="AEform" method="post">
+    <form id="addExam">
         <div aria-hidden="true" aria-labelledby="exampleModalLabel5" class="modal fade" id="exampleModal5"
              tabindex="-1">
             <div class="modal-dialog">
@@ -529,7 +532,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">取消</button>
-                            <a class="btn btn-primary" type="button">确定</a>
+                            <button class="btn btn-primary" id="addExamB" type="button">确定</button>
                         </div>
                     </div>
                 </div>
@@ -577,34 +580,71 @@
     </form>
 </div>
 <footer class="sticky-bottom">
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
 $(document).ready(function(){
     /*
     弹出框信息引入
-    一个事件通过函数绑定多个对象
     */
-    function modalInsert(){
+    $("#TablePage tbody").on("click","#UpDate,#DelEte",function(){
         //获得当前行
         var currentRow=$(this).closest("tr"); 
-        var number=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
+        var number=currentRow.find("td:eq(0)").text();
         var name=currentRow.find("td:eq(1)").text(); 
         var subject=currentRow.find("td:eq(3)").text(); 
         $(".Number").text(number);
         $(".Name").text(name);
         $(".Subject").text(subject);
         $("#basic-addonc").next().val(subject);
-        $("#DelTea").attr("href","teacher/deleteTea/"+number);
-        $("#exampleModal").parent().attr("action","teacher/updateTea/"+number);
-        console.log($("#DelTea").attr("href")+"\n"+$("#exampleModal").parent().attr("action"));
-    }
-    $("#UpDate,#DelEte,#DelTea").bind("click",modalInsert);
-    $("ul li").children("a[aria-current='page']").bind("click",modalInsert);
+        /*
+        删除教师信息
+        */       
+        $("#deleteTea").click(function(){
+            $.ajax({
+                url:"teacher/"+number,
+                type:"DELETE",
+                success:function(msg){
+                    alert(msg);
+                    location.reload();
+                }
+            })
+        })
+        /*
+        修改教师信息
+        */
+        $("#updateTeaB").click(function(){
+            $.ajax({
+                url:"teacher/"+number,
+                type:"PUT",
+                data:$("#updateTea").serialize(),
+                success:function(msg){
+                    alert(msg);
+                    location.reload();
+                }
+            })
+        })
+    })
+    /*
+    添加教师
+    */
+    $("#addTeaB").click(function(){
+        $.ajax({
+            url:"user",
+            type:"POST",
+            data:$("#addTea").serialize(),
+            success:function(msg){
+                alert(msg);
+                location.reload();
+            }
+        })
+    })
+    // $("ul li").children("a[aria-current='page']").bind("click",modalInsert);
+
     $("ul.dropdown-menu").find("button.TEA").click(function(){
         $(".QSt").text($("#SubQ").text());
     });
@@ -663,6 +703,9 @@ $(document).ready(function(){
         });
     });
 });
+
+
+
 
 
 

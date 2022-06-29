@@ -46,6 +46,11 @@
 
 
 
+
+
+
+
+
     </style>
     <title>主界面</title>
 </head>
@@ -89,14 +94,53 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px"
+             th:each="Exam,it : ${test}" th:if="${it.index} gt 5 and ${it.index} lt 9">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight: bold;color: skyblue;" th:text="${Exam.eName}">考试名称</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
+                    <span th:text="${Exam.time}"></span></h6>
+                <p class="card-text" style="color:red;">你有一个考试需要参加！</p>
+                <small style="display: none" th:text="${Exam.eid}">1</small>
+                <a class="card-link btn btn-outline-warning" href="#">点击参加考试</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px"
+             th:each="Exam,it : ${test}" th:if="${it.index} gt 8 and ${it.index} lt 12">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight: bold;color: skyblue;" th:text="${Exam.eName}">考试名称</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
+                    <span th:text="${Exam.time}"></span></h6>
+                <p class="card-text" style="color:red;">你有一个考试需要参加！</p>
+                <small style="display: none" th:text="${Exam.eid}">1</small>
+                <a class="card-link btn btn-outline-warning" href="#">点击参加考试</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-md-4 STU" style="width: 18rem;margin-right: 100px;margin-bottom: 50px"
+             th:each="Exam,it : ${test}" th:if="${it.index} gt 11 and ${it.index} lt 15">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-weight: bold;color: skyblue;" th:text="${Exam.eName}">考试名称</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold">考试时间</span><br>
+                    <span th:text="${Exam.time}"></span></h6>
+                <p class="card-text" style="color:red;">你有一个考试需要参加！</p>
+                <small style="display: none" th:text="${Exam.eid}">1</small>
+                <a class="card-link btn btn-outline-warning" href="#">点击参加考试</a>
+            </div>
+        </div>
+    </div>
 </div>
 <!--添加专业考试功能引入-->
 <div th:replace="allTeacher :: addExamfr"></div>
 <footer>
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
@@ -200,13 +244,18 @@ $(document).ready(function(){
 	/*
     添加考试表单控制
     */
-    $("#exampleModal5").find("a").click(function(){
+    $("#addExamB").click(function(){
         $("#Es").val($("#SubQ").text());
-        $("#AEform").attr("action","setExam/2");
-        console.log($("#AEform").attr("action")+"+"+$("#Es").val());
-        console.log($("#AEform").serializeArray());
-        $("#AEform").submit();
-    });
+        $.ajax({
+            url:"exam/2",
+            type:"POST",
+            data:$("#addExam").serialize(),
+            success:function(msg){
+                alert(msg);
+                location.reload();
+            }
+        })
+    })
 });
 
 

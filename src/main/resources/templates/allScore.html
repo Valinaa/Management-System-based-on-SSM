@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+    <link href="/static/jquery.dataTables.min.css" rel="stylesheet" th:href="@{/jquery.dataTables.min.css}"
+          type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
     <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
@@ -31,6 +32,8 @@
     footer span{
         font-weight: bold;
     }
+
+
     </style>
     <title>考试信息展示</title>
 </head>
@@ -43,19 +46,26 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small style="font-family: '楷体';color: #BE7140E0">成绩列表<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">详细信息</small>
+                    <small style="font-family: '楷体';color: #BE7140E0">成绩列表<img alt="building"
+                                                                               height="48"
+                                                                               src="/static/SVG/arrow-right-short.svg"
+                                                                               th:src="@{/SVG/arrow-right-short.svg}"
+                                                                               width="48">详细信息</small>
                 </h1>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 column">
-            <button class="btn btn-primary" style="visibility: hidden" data-bs-toggle="modal" data-bs-target="#exampleModal3">新增</button>
+            <button class="btn btn-primary" data-bs-target="#exampleModal3" data-bs-toggle="modal"
+                    style="visibility: hidden">新增
+            </button>
         </div>
     </div>
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+            <table class="table table-hover table-striped table-primary table-bordered border-info display"
+                   id="TablePage">
                 <thead class="table-light">
                 <tr class="text-center">
                     <th>成绩编号</th>
@@ -75,8 +85,10 @@
                     <td th:text="${Escore.totalScore}"></td>
                     <td class="TEA">
                         <div class="btn-group">
-                            <a id="UpDate" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
-                            <a id="DelEte" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</a>
+                            <a class="btn btn-info btn-sm" data-bs-target="#exampleModal" data-bs-toggle="modal"
+                               id="UpDate">更改</a>
+                            <a class="btn btn-danger btn-sm" data-bs-target="#exampleModal2" data-bs-toggle="modal"
+                               id="DelEte">删除</a>
                         </div>
                     </td>
                 </tr>
@@ -88,7 +100,7 @@
 <!--侧边栏引入-->
 <div th:replace="allTeacher :: offcanvas"></div>
 <!-- 成绩修改表单框 -->
-<form action="#" method="post">
+<form id="updateScore">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -111,12 +123,14 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addona">成绩：</span>
-                        <input type="text" name="score" class="form-control" placeholder="请填写更改后的成绩" aria-label="score" aria-describedby="basic-addona">
+                        <input aria-describedby="basic-addona" aria-label="score" class="form-control" name="score"
+                               placeholder="请填写更改后的成绩"
+                               type="text">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                    <button class="btn btn-primary">确定修改</button>
+                    <button class="btn btn-primary" id="updateScoreB" type="button">确定修改</button>
                 </div>
             </div>
         </div>
@@ -146,7 +160,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <a id="DelTea" class="btn btn-primary" href="Escore/deleteEscore/{Escore.sid}">确定删除</a>
+                <button class="btn btn-primary" id="deleteEscore" type="button">确定删除</button>
             </div>
         </div>
     </div>
@@ -156,10 +170,10 @@
 <!--添加专业考试功能引入-->
 <div th:replace="allTeacher :: addExamfr"></div>
 <footer class="sticky-bottom">
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
@@ -167,7 +181,7 @@ $(document).ready(function(){
     /*
     弹出框信息引入
     */
-    $("#UpDate,#DelEte,#DelTea").click(function(){
+    $("#TablePage tbody").on("click","#UpDate,#DelEte",function(){
         //获得当前行
         var currentRow=$(this).closest("tr");
         var eid=currentRow.find("td:eq(1)").text();
@@ -175,10 +189,35 @@ $(document).ready(function(){
         var Numberr=currentRow.find("td:eq(2)").text();
         $(".eid").text(eid);
         $(".Numberr").text(Numberr);
-        $("#DelTea").attr("href","score/deleteEscore/"+sid);
-        $("#exampleModal").parent().attr("action","score/updateScore/"+sid);
-        console.log($("#DelTea").attr("href")+"\n"+$("#exampleModal").parent().attr("action"));
-    });
+        /*
+        删除成绩表
+        */       
+        $("#deleteEscore").click(function(){
+            $.ajax({
+                url:"score/"+sid,
+                type:"DELETE",
+                success:function(msg){
+                    alert(msg);
+                    location.reload();
+                }
+            })
+        })
+        /*
+        修改成绩表
+        */
+        $("#updateScoreB").click(function(){
+            $.ajax({
+                url:"score/"+sid,
+                type:"PUT",
+                data:$("#updateScore").serialize(),
+                success:function(msg){
+                    alert(msg);
+                    location.reload();
+                }
+            })
+        })
+    })
+
     $("ul.dropdown-menu").find("button.TEA").click(function(){
         $(".QSt").text($("#SubQ").text());
     });
@@ -186,5 +225,7 @@ $(document).ready(function(){
         $(".QSt").text($("#SubQ").text());
     });
 });
+
+
 </script>
 </html>

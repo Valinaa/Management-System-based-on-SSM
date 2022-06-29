@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" th:href="@{/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" href="/static/jquery.dataTables.min.css" th:href="@{/jquery.dataTables.min.css}">
+    <link href="/static/jquery.dataTables.min.css" rel="stylesheet" th:href="@{/jquery.dataTables.min.css}"
+          type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <script src="/static/jquery-3.5.1.min.js" th:src="@{/jquery-3.5.1.min.js}"></script>
     <script src="/static/bootstrap.min.js" th:src="@{/bootstrap.min.js}"></script>
@@ -22,6 +23,8 @@
     footer span{
         font-weight: bold;
     }
+
+
     </style>
     <title>题库管理</title>
 </head>
@@ -34,7 +37,10 @@
         <div class="col-md-12 column">
             <div class="page-header">
                 <h1>
-                    <small style="font-family: '楷体';">题库<img src="/static/SVG/arrow-right-short.svg" th:src="@{/SVG/arrow-right-short.svg}" alt="building" width="48" height="48">试题信息</small>
+                    <small style="font-family: '楷体';">题库<img alt="building"
+                                                             height="48" src="/static/SVG/arrow-right-short.svg"
+                                                             th:src="@{/SVG/arrow-right-short.svg}"
+                                                             width="48">试题信息</small>
                 </h1>
             </div>
         </div>
@@ -46,7 +52,8 @@
     </div>
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <table id="TablePage" class="table table-hover table-striped table-primary table-bordered border-info display">
+            <table class="table table-hover table-striped table-primary table-bordered border-info display"
+                   id="TablePage">
                 <thead class="table-light">
                 <tr class="text-center">
                     <th>编号</th>
@@ -73,10 +80,12 @@
                     <td th:text="${Questions.answer}"></td>
                     <td th:text="${Questions.marks}"></td>
                     <td class="nono">
-                    <div class="btn-group">
-                        <a id="UpDate" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">更改</a>
-                        <a id="DelEte" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">删除</a>
-                    </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info btn-sm" data-bs-target="#exampleModal" data-bs-toggle="modal"
+                               id="UpDate">更改</a>
+                            <a class="btn btn-danger btn-sm" data-bs-target="#exampleModal2" data-bs-toggle="modal"
+                               id="DelEte">删除</a>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -87,7 +96,7 @@
 <!--侧边栏引入-->
 <div th:replace="allTeacher :: offcanvas"></div>
 <!-- 修改表单框 -->
-<form action="#" method="post" id="Uform">
+<form id="Uform">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -104,24 +113,28 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">科目：</span>
-                        <input type="text" name="QSub" class="form-control" aria-label="QSub" aria-describedby="basic-addon1"required>
+                        <input aria-describedby="basic-addon1" aria-label="QSub" class="form-control" name="QSub"
+                               required type="text">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">题型：</span>
-                            <select id="toSe" class="form-select" name="QType" aria-label="QType" aria-describedby="basic-addon2">
-                                <option selected>请选择题型</option>
-                                <option value="1">单选题</option>
-                                <option value="2">多选题</option>
-                                <option value="3">判断题</option>
-                                <option value="4">填空题</option>
-                                <option value="5">简答题</option>
-                            </select>
+                        <select aria-describedby="basic-addon2" aria-label="QType" class="form-select" id="toSe"
+                                name="QType">
+                            <option selected>请选择题型</option>
+                            <option value="1">单选题</option>
+                            <option value="2">多选题</option>
+                            <option value="3">判断题</option>
+                            <option value="4">填空题</option>
+                            <option disabled value="5">简答题</option>
+                        </select>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">题目：</span>
-                        <input type="text" name="questions" class="form-control" aria-label="questions" aria-describedby="basic-addon3">
+                        <input aria-describedby="basic-addon3" aria-label="questions" class="form-control"
+                               name="questions"
+                               type="text">
                     </div>
-                    <!--单选题表单<input name="questions" class="form-check-input mt-0" type="radio" value="A">-->
+                    <!--单选多选题表单<input name="questions" class="form-check-input mt-0" type="radio" value="A">-->
                     <div id="Singler" style="display: none">
                         <div class="input-group">
                             <input type="text" name="questions" class="form-control" placeholder="A：">
@@ -137,20 +150,6 @@
                         </div>
                     </div>
                     <!--多选题表单<input name="questions" class="form-check-input mt-0" type="checkbox" value="A">-->
-                    <div id="Muchr" style="display: none">
-                        <div class="input-group mb-3">
-                            <input type="text" name="questions" class="form-control" placeholder="A：">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="questions" class="form-control" placeholder="B：">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="questions" class="form-control" placeholder="C：">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" name="questions" class="form-control" placeholder="D：">
-                        </div>
-                    </div>
                     <!--判断题表单<input name="questions" class="form-check-input mt-0" type="radio" value="对">-->
                     <div id="tOrf" style="display: none">
                         <div class="input-group">
@@ -169,20 +168,23 @@
                     <!--简答题表单-->
                     <div id="ownOp" style="display: none">
                         <div class="input-group mb-3">
-                        <input type="textarea" name="questions" class="form-control" placeholder="请写出你的想法">
+                            <input class="form-control" name="questions" placeholder="请写出你的想法" type="textarea">
                         </div>
                     </div>
                     <br>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon100">答案：</span>
-                        <input type="text" name="answer" class="form-control" aria-label="answer" aria-describedby="basic-addon100">
+                        <input aria-describedby="basic-addon100" aria-label="answer" class="form-control" name="answer"
+                               type="text">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon11">分值：</span>
-                        <input type="number" name="marks" class="form-control" min="0.0" max="100.0" step="0.5" aria-label="marks" aria-describedby="basic-addon11">
+                        <input aria-describedby="basic-addon11" aria-label="marks" class="form-control" max="100.0"
+                               min="0.0" name="marks"
+                               step="0.5" type="number">
                     </div>
                     <!--拼接question数据-->
-                    <input type="hidden" name="question" />
+                    <input name="question" type="hidden"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
@@ -222,13 +224,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <a id="DelStu" class="btn btn-primary" href="questions/deleteQues/{Question.qid}">确定删除</a>
+                <button class="btn btn-primary" id="deleteQuestion">确定删除</button>
             </div>
         </div>
     </div>
 </div>
 <!--添加试题弹出框-->
-<form action="questions/addQuestion" method="post" id="Qform">
+<form id="Qform">
     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -239,22 +241,26 @@
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1e">科目：</span>
-                        <input type="text" name="QSub" class="form-control" aria-label="QSub" aria-describedby="basic-addon1e"required>
+                        <input aria-describedby="basic-addon1e" aria-label="QSub" class="form-control" name="QSub"
+                               required type="text">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2e">题型：</span>
-                            <select id="Sel" class="form-select" name="QType" aria-label="QType" aria-describedby="basic-addon2e">
-                                <option selected>请选择题型</option>
-                                <option value="1">单选题</option>
-                                <option value="2">多选题</option>
-                                <option value="3">判断题</option>
-                                <option value="4">填空题</option>
-                                <option value="5">简答题</option>
-                            </select>
+                        <select aria-describedby="basic-addon2e" aria-label="QType" class="form-select" id="Sel"
+                                name="QType">
+                            <option selected>请选择题型</option>
+                            <option value="1">单选题</option>
+                            <option value="2">多选题</option>
+                            <option value="3">判断题</option>
+                            <option value="4">填空题</option>
+                            <option disabled value="5">简答题</option>
+                        </select>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3e">题目：</span>
-                        <input type="text" name="questions" class="form-control" aria-label="questions" aria-describedby="basic-addon3e">
+                        <input aria-describedby="basic-addon3e" aria-label="questions" class="form-control"
+                               name="questions"
+                               type="text">
                     </div>
                     <!--单选多选题表单<input name="questions" class="form-check-input mt-0" type="radio" value="A">-->
                     <div id="SinMuch" style="display: none">
@@ -282,7 +288,7 @@
                         </div>
                     </div>
                     <!--填空题表单<input type="text" name="questions" class="form-check-input mt-0" placeholder="请填空">-->
-                    
+
                     <div id="BrankR" style="display: none">
                         <div class="input-group">
                             <input type="text" name="questions" class="form-control" placeholder="请填空">
@@ -291,20 +297,23 @@
                     <!--简答题表单-->
                     <div id="LongR" style="display: none">
                         <div class="input-group">
-                        <input type="text" name="questions" class="form-control" placeholder="请写出你的想法">
+                            <input class="form-control" name="questions" placeholder="请写出你的想法" type="text">
                         </div>
                     </div>
                     <br>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon10ee">答案：</span>
-                        <input type="text" name="answer" class="form-control" aria-label="answer" aria-describedby="basic-addon10ee">
+                        <input aria-describedby="basic-addon10ee" aria-label="answer" class="form-control" name="answer"
+                               type="text">
                     </div>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon11e">分值：</span>
-                        <input type="number" name="marks" class="form-control" min="0.0" max="100.0" step="0.5" aria-label="marks" aria-describedby="basic-addon11e">
+                        <input aria-describedby="basic-addon11e" aria-label="marks" class="form-control" max="100.0"
+                               min="0.0" name="marks"
+                               step="0.5" type="number">
                     </div>
                     <!--拼接question数据-->
-                    <input type="hidden" name="question" />
+                    <input name="question" type="hidden"/>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
@@ -319,10 +328,10 @@
 <!--添加专业考试功能引入-->
 <div th:replace="allTeacher :: addExamfr"></div>
 <footer class="sticky-bottom">
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
@@ -334,35 +343,35 @@ $(document).ready(function(){
         var Selobj=$("#toSe option:selected").val();
         switch (Number(Selobj)) {
             case 1:{
-                $("#SinMuch").show();
+                $("#Singler").show();
                 $("#tOrf").hide();
                 $("#filBlk").hide();
                 $("#ownOp").hide();
                 break;
             }
             case 2:{
-                $("#SinMuch").show();
+                $("#Singler").show();
                 $("#tOrf").hide();
                 $("#filBlk").hide();
                 $("#ownOp").hide();
                 break;
             }
             case 3:{
-                $("#SinMuch").hide();
+                $("#Singler").hide();
                 $("#tOrf").show();
                 $("#filBlk").hide();
                 $("#ownOp").hide();
                 break;
             }
             case 4:{
-                $("#SinMuch").hide();
+                $("#Singler").hide();
                 $("#tOrf").hide();
                 $("#filBlk").show();
                 $("#ownOp").hide();
                 break;
             }
             case 5:{
-                $("#SinMuch").hide();
+                $("#Singler").hide();
                 $("#tOrf").hide();
                 $("#filBlk").hide();
                 $("#ownOp").show();
@@ -447,10 +456,19 @@ $(document).ready(function(){
         }
         $("#Qform").find("[name='question']").val(Question);
         console.log($("#Qform").find("[name='question']").val());
-        $("#Qform").submit();
+        // $("#Qform").submit();
+        $.ajax({
+            url:"question",
+            type:"POST",
+            data:$("#Qform").serialize(),
+            success:function(msg){
+                alert(msg);
+                location.reload();
+            }
+        })
     });
     /*
-    修改
+    修改试题
     */
     $("#UpdateQ").click(function(){
         var Question=$("#Uform").find("[name='question']").val();
@@ -471,14 +489,23 @@ $(document).ready(function(){
             var ele=$(this).text();
             arr.push(ele);
         });
-        $("#Uform").attr("action","questions/updateQues/"+arr[0]);
-        console.log("网址为"+$("#Uform").attr("action"));
-        $("#Uform").submit();
+        $.ajax({
+            url:"question/"+arr[0],
+            type:"PUT",
+            data:$("#Uform").serialize(),
+            success:function(msg){
+                alert(msg);
+                location.reload();
+            }
+        })
+        // $("#Uform").attr("action","questions/updateQues/"+arr[0]);
+        // console.log("网址为"+$("#Uform").attr("action"));
+        // $("#Uform").submit();
     });
     /*
     弹出框信息引入
     */
-    $("#UpDate,#DelEte,#DelStu").click(function(){
+    $("#TablePage tbody").on("click","#UpDate,#DelEte",function(){
         //获得当前行
         var currentRow=$(this).closest("tr"); 
         var qid=currentRow.find("td:eq(0)").text(); //获得当前行第一个TD值
@@ -492,8 +519,21 @@ $(document).ready(function(){
         $("input[name='QSub']").val(QSub);
         $("input[name='answer']").val(ans);
         $("input[name='marks']").val(score);
-        $("#DelStu").attr("href","questions/deleteQues/"+qid);
-    });
+        /*
+        删除试题
+        */       
+        $("#deleteQuestion").click(function(){
+            $.ajax({
+                url:"question/"+qid,
+                type:"DELETE",
+                success:function(msg){
+                    alert(msg);
+                    location.reload();
+                }
+            })
+        })
+    })
+
     $("ul.dropdown-menu").find("button.TEA").click(function(){
         $(".QSt").text($("#SubQ").text());
     });
@@ -501,5 +541,7 @@ $(document).ready(function(){
         $(".QSt").text($("#SubQ").text());
     });
 });
+
+
 </script>
 </html>

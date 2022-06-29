@@ -43,6 +43,7 @@
     footer span{
         font-weight: bold;
     }
+
     </style>
     <title>欢迎来到登录界面！</title>
 </head>
@@ -77,7 +78,8 @@
         <div class="row mb-3 text-center">
             <span id="errMs" style="color:red;font-weight:bold" th:text="${Error}"></span>
         </div>
-        <div class="text-center"><button class="btn btn-success">提交</button>
+        <div class="text-center">
+            <button class="btn btn-success">提交</button>
             <button type="reset" class="btn btn-danger">重置</button>
         </div>
     </form>
@@ -85,10 +87,10 @@
 <!--<h3>注册成功！账号是：${student.subject}</h3>
 <h3>欢迎${student.subject}登录！您的密码是：${student.number }</h3>-->
 <footer>
-    <span>CopyRight</span><br>
-    <span>Team：</span>重案七组<br>
-    <span>Course：</span>Managerment Information Systems<br>
-    <span>E-mail：</span>www.EcustCK@163.com
+    <span>Publication</span><br>
+    <span>Date:</span>2022/7/2<br>
+    <span>Author:</span>Valinaa(@GitHub)<br>
+    <span>E-mail:</span>www.EcustCK@163.com
 </footer>
 </body>
 <script>
@@ -130,5 +132,6 @@ $(document).ready(function(){
         $("#errMs").text("-信息已重置-");
     });
 });
+
 </script>
 </html>

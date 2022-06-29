@@ -70,13 +70,27 @@ $(document).ready(function() {
     /*
     添加考试表单控制
     */
-    $("#exampleModal5").find("a").click(function(){
+    $("#addExamB").click(function(){
+        $("#Es").val($("#SubQ").text());
+        $.ajax({
+            url:"exam/2",
+            type:"POST",
+            data:$("#addExam").serialize(),
+            success:function(msg){
+                alert(msg);
+                location.reload();
+            }
+        })
+    })
+
+/*    $("#exampleModal5").find("a").click(function(){
         $("#Es").val($("#SubQ").text());
         $("#AEform").attr("action","setExam/2");
         console.log($("#AEform").attr("action")+"+"+$("#Es").val());
         console.log($("#AEform").serializeArray());
         $("#AEform").submit();
-    });
+    });*/
+
     /*
     表格分页
     */
