@@ -1,257 +1,94 @@
-2022-06-29 00:37:10.084 INFO [http-nio-8081-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-06-29 01:12:39.654 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-10} closing ...
-2022-06-29 01:12:39.656 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-10} closed
-2022-06-29 01:12:42.229 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 25116 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
-2022-06-29 01:12:42.238 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
-2022-06-29 01:12:44.125 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
-2022-06-29 01:12:44.125 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
-2022-06-29 01:12:44.126 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2022-06-29 01:12:44.130 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
-2022-06-29 01:12:44.138 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
-2022-06-29 01:12:44.139 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2022-06-29 01:12:44.139 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
-2022-06-29 01:12:44.216 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2022-06-29 01:12:44.397 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
-2022-06-29 01:12:45.281 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} inited
-2022-06-29 01:12:46.081 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
-2022-06-29 01:12:46.136 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 4.322 seconds (JVM running for 5.56)
-2022-06-29 01:12:51.738 INFO [http-nio-8081-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-06-29 01:27:21.674 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} closing ...
-2022-06-29 01:27:21.683 INFO [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} closed
-2022-06-29 09:52:06.642 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
-2022-06-29 09:52:06.651 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
-2022-06-29 09:52:08.027 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
-2022-06-29 09:52:08.027 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
-2022-06-29 09:52:08.028 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2022-06-29 09:52:08.040 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
-2022-06-29 09:52:08.048 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
-2022-06-29 09:52:08.048 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
-2022-06-29 09:52:08.049 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
-2022-06-29 09:52:08.107 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
-2022-06-29 09:52:08.210 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
-2022-06-29 09:52:08.749 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-1} inited
-2022-06-29 09:52:09.369 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
-2022-06-29 09:52:09.398 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 3.089 seconds (JVM running for 4.018)
-2022-06-29 09:52:19.427 INFO [http-nio-8081-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-06-29 14:35:33.909 ERROR[http-nio-8081-exec-6] druid.sql.Statement : {conn-10005, pstmt-20029} execute error. insert into User
-    (uid,role,admin,password)
-    values(?,?,?,?)
-java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test' for key 'admin'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3446) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:638) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:152) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:483) ~[druid-1.2.11.jar:1.2.11]
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76) ~[mybatis-3.5.9.jar:3.5.9]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427) ~[mybatis-spring-2.0.7.jar:2.0.7]
-	at jdk.proxy2.$Proxy78.selectOne(Unknown Source) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160) ~[mybatis-spring-2.0.7.jar:2.0.7]
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.9.jar:3.5.9]
-	at jdk.proxy3.$Proxy88.addUser(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
-	at jdk.proxy3.$Proxy89.addUser(Unknown Source) ~[?:?]
-	at cn.ecust.service.Impl.UserServiceImpl.addUser(UserServiceImpl.java:31) ~[classes/:?]
-	at cn.ecust.controller.UserController.toAddUser(UserController.java:39) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:114) ~[druid-1.2.11.jar:1.2.11]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at java.lang.Thread.run(Thread.java:833) ~[?:?]
-2022-06-29 14:35:33.943 ERROR[http-nio-8081-exec-6] druid.sql.Statement : {conn-10005, pstmt-20029} execute error. insert into User
-    (uid,role,admin,password)
-    values(?,?,?,?)
-java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'test' for key 'admin'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:371) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3446) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.wall.WallFilter.preparedStatement_execute(WallFilter.java:638) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:434) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3444) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:152) ~[druid-1.2.11.jar:1.2.11]
-	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:483) ~[druid-1.2.11.jar:1.2.11]
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:89) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76) ~[mybatis-3.5.9.jar:3.5.9]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427) ~[mybatis-spring-2.0.7.jar:2.0.7]
-	at jdk.proxy2.$Proxy78.selectOne(Unknown Source) ~[?:?]
-	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160) ~[mybatis-spring-2.0.7.jar:2.0.7]
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145) ~[mybatis-3.5.9.jar:3.5.9]
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.9.jar:3.5.9]
-	at jdk.proxy3.$Proxy88.addUser(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.19.jar:5.3.19]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.19.jar:5.3.19]
-	at jdk.proxy3.$Proxy89.addUser(Unknown Source) ~[?:?]
-	at cn.ecust.service.Impl.UserServiceImpl.addUser(UserServiceImpl.java:31) ~[classes/:?]
-	at cn.ecust.controller.UserController.toAddUser(UserController.java:39) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.19.jar:5.3.19]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764) ~[tomcat-embed-core-9.0.62.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:114) ~[druid-1.2.11.jar:1.2.11]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.19.jar:5.3.19]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
-	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+2022-06-29 18:49:31.165 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:49:31.167 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:49:31.289 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:49:31.289 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:49:31.291 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:49:31.291 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:49:31.292 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:49:31.292 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:49:31.292 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:49:31.301 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:49:31.313 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:49:31.367 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-14} inited
+2022-06-29 18:49:31.452 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:49:31.457 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.31 seconds (JVM running for 32246.077)
+2022-06-29 18:51:27.569 INFO [Thread-120] com.alibaba.druid.pool.DruidDataSource : {dataSource-14} closing ...
+2022-06-29 18:51:27.571 INFO [Thread-120] com.alibaba.druid.pool.DruidDataSource : {dataSource-14} closed
+2022-06-29 18:51:27.632 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:51:27.633 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:51:27.761 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:51:27.761 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:51:27.761 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:51:27.761 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:51:27.762 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:27.762 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:51:27.762 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:51:27.773 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:51:27.792 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:51:27.840 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-15} inited
+2022-06-29 18:51:27.929 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:27.934 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.321 seconds (JVM running for 32362.554)
+2022-06-29 18:51:35.389 INFO [Thread-129] com.alibaba.druid.pool.DruidDataSource : {dataSource-15} closing ...
+2022-06-29 18:51:35.390 INFO [Thread-129] com.alibaba.druid.pool.DruidDataSource : {dataSource-15} closed
+2022-06-29 18:51:35.454 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:51:35.455 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:51:35.566 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:51:35.567 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:51:35.579 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:51:35.593 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:51:35.642 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-16} inited
+2022-06-29 18:51:35.729 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:35.736 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.304 seconds (JVM running for 32370.356)
+2022-06-29 18:51:49.459 INFO [Thread-138] com.alibaba.druid.pool.DruidDataSource : {dataSource-16} closing ...
+2022-06-29 18:51:49.462 INFO [Thread-138] com.alibaba.druid.pool.DruidDataSource : {dataSource-16} closed
+2022-06-29 18:51:49.560 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:51:49.561 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:51:49.716 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:51:49.716 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:51:49.716 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:51:49.717 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:51:49.718 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:49.718 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:51:49.718 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:51:49.732 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:51:49.754 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:51:49.814 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-17} inited
+2022-06-29 18:51:49.938 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:51:49.945 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.413 seconds (JVM running for 32384.566)
+2022-06-29 18:53:27.962 INFO [Thread-147] com.alibaba.druid.pool.DruidDataSource : {dataSource-17} closing ...
+2022-06-29 18:53:27.963 INFO [Thread-147] com.alibaba.druid.pool.DruidDataSource : {dataSource-17} closed
+2022-06-29 18:53:28.022 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:53:28.023 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:53:28.123 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:53:28.123 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:53:28.123 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:53:28.123 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:53:28.123 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:53:28.124 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:53:28.124 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:53:28.134 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:53:28.144 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:53:28.194 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-18} inited
+2022-06-29 18:53:28.269 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:53:28.274 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.27 seconds (JVM running for 32482.895)
+2022-06-29 18:53:46.097 INFO [Thread-156] com.alibaba.druid.pool.DruidDataSource : {dataSource-18} closing ...
+2022-06-29 18:53:46.098 INFO [Thread-156] com.alibaba.druid.pool.DruidDataSource : {dataSource-18} closed
+2022-06-29 18:53:46.168 INFO [restartedMain] cn.ecust.DemoApplication : Starting DemoApplication using Java 17.0.2 on DESKTOP-7CO275H with PID 18652 (D:\IntelliJ IDEA Community Edition 2022.1\project\target\classes started by DELL in D:\IntelliJ IDEA Community Edition 2022.1\project)
+2022-06-29 18:53:46.169 INFO [restartedMain] cn.ecust.DemoApplication : No active profile set, falling back to 1 default profile: "default"
+2022-06-29 18:53:46.275 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : Loaded Apache Tomcat Native library [1.2.32] using APR version [1.7.0].
+2022-06-29 18:53:46.275 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2022-06-29 18:53:46.275 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2022-06-29 18:53:46.276 INFO [restartedMain] org.apache.catalina.core.AprLifecycleListener : OpenSSL successfully initialized [OpenSSL 1.1.1n  15 Mar 2022]
+2022-06-29 18:53:46.276 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:53:46.277 INFO [restartedMain] org.apache.catalina.core.StandardService : Starting service [Tomcat]
+2022-06-29 18:53:46.277 INFO [restartedMain] org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-29 18:53:46.288 INFO [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2022-06-29 18:53:46.302 INFO [restartedMain] com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-06-29 18:53:46.351 INFO [restartedMain] com.alibaba.druid.pool.DruidDataSource : {dataSource-19} inited
+2022-06-29 18:53:46.456 INFO [restartedMain] org.apache.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-8081"]
+2022-06-29 18:53:46.463 INFO [restartedMain] cn.ecust.DemoApplication : Started DemoApplication in 0.316 seconds (JVM running for 32501.083)
